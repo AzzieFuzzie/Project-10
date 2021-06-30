@@ -16,6 +16,9 @@ const cors = require('cors');
 // create the Express app
 const app = express();
 
+// CORS middleware
+app.use(cors());
+
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
 
@@ -31,9 +34,6 @@ app.use(morgan('dev'));
 // Router middleware
 app.use('/api/users', usersRoutes);
 app.use('/api/courses', coursesRoutes);
-
-// CORS middleware
-app.use(cors({ origin: 'http://localhost:3000' }));
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {

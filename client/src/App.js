@@ -5,6 +5,7 @@ function App() {
   const [courses, setCourses] = useState([]);
   useEffect(() => {
     fetch('http://localhost:5000/api/courses')
+      .then((data) => console.log(data))
       .then((res) => setCourses(res.courses))
       .catch((error) => console.log('Error fetching and parsing data', error));
   }, []);
@@ -13,9 +14,11 @@ function App() {
     <div>
       <h1>Courses</h1>
       <ul>
-        {courses.map((course) => (
-          <li key={course.id}>`${course.title}`</li>
-        ))}
+        <ul>
+          {courses.map((course) => (
+            <li key={course.id}>`${course.title}`</li>
+          ))}
+        </ul>
       </ul>
     </div>
   );
