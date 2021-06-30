@@ -33,7 +33,7 @@ app.use('/api/users', usersRoutes);
 app.use('/api/courses', coursesRoutes);
 
 // CORS middleware
-app.use(cors({ origin: ' http://10.0.0.67:3000' }));
+app.use(cors({ origin: 'http://localhost:3000' }));
 
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
