@@ -1,27 +1,22 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
+// import withContext from './Context';
+import UserSignUp from './components/UserSignUp.js';
+import UserSignIn from './components/UserSignIn.js';
+import UserSignOut from './components/UserSignOut.js';
+import Header from './components/Header';
 
-function App() {
-  const [courses, setCourses] = useState([]);
-  useEffect(() => {
-    fetch('http://localhost:5000/api/courses')
-      .then((data) => console.log(data))
-      .then((res) => setCourses(res.courses))
-      .catch((error) => console.log('Error fetching and parsing data', error));
-  }, []);
+// import { Provider } from './Context';
 
-  return (
+class App extends Component {
+  render() {
     <div>
-      <h1>Courses</h1>
-      <ul>
-        <ul>
-          {courses.map((course) => (
-            <li key={course.id}>`${course.title}`</li>
-          ))}
-        </ul>
-      </ul>
-    </div>
-  );
+      <UserSignUp />
+      <UserSignIn />
+      <UserSignOut />
+      <Header />
+    </div>;
+  }
 }
 
 export default App;
