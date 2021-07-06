@@ -1,10 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div>
+    <div className='header'>
       <h1>Course</h1>
-      // sign up // sign in
+
+      <nav>
+        <React.Fragment>
+          <Link to='/signup' className='signup'>
+            Sign Up
+          </Link>
+          <Link to='/signin' className='signin'>
+            Sign In
+          </Link>
+        </React.Fragment>
+      </nav>
     </div>
   );
 };

@@ -1,3 +1,6 @@
+import React from 'react';
+import config from './config';
+
 export default class Data {
   api(
     path,
@@ -29,7 +32,7 @@ export default class Data {
   }
 
   async getUser(username, password) {
-    const response = await this.api(`/users`, 'GET', null, true, {
+    const response = await this.api(`/api/users`, 'GET', null, true, {
       username,
       password,
     });
@@ -43,7 +46,7 @@ export default class Data {
   }
 
   async createUser(user) {
-    const response = await this.api('/users', 'POST', user);
+    const response = await this.api('/api/users/create', 'POST', user);
     if (response.status === 201) {
       return [];
     } else if (response.status === 400) {
@@ -57,8 +60,7 @@ export default class Data {
 
   async createCourse(course) {
     const response = await this.api(`/api/courses`, 'POST', null, true, {
-      username,
-      password,
+      course,
     });
     if (response.status === 200) {
       return response.json().then((data) => data);
@@ -71,8 +73,7 @@ export default class Data {
 
   async getCourseDetail(course) {
     const response = await this.api(`/api/courses/:id`, 'GET', null, true, {
-      username,
-      password,
+      course,
     });
     if (response.status === 200) {
       return response.json().then((data) => data);
@@ -85,13 +86,12 @@ export default class Data {
 
   async deleteCourse(course) {
     const response = await this.api(
-      `/api/courses?delete/:id`,
+      `/api/courses/delete/:id`,
       'DELETE',
       null,
       true,
       {
-        username,
-        password,
+        course,
       }
     );
     if (response.status === 200) {
@@ -104,8 +104,7 @@ export default class Data {
   }
   async getCourse(course) {
     const response = await this.api(`/api/courses`, 'GET', null, true, {
-      username,
-      password,
+      course,
     });
     if (response.status === 200) {
       return response.json().then((data) => data);
