@@ -10,7 +10,7 @@ import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';
 import './styles/global.css';
-import withContext from '../Context';
+import withContext from './components/Context';
 // import { Provider } from './Context';
 const UserSignUpWithContext = withContext(UserSignUp);
 

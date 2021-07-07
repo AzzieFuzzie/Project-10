@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
-import Data from './Data';
+// import Data from './Data';
 
 export default class UserSignUp extends Component {
   state = {
