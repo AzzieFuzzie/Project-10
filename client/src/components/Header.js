@@ -3,20 +3,24 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className='header'>
-      <h1>Course</h1>
+    <header>
+      <div className='wrap header--flex'>
+        <h1 className='header--logo'>Courses</h1>
 
-      <nav>
-        <React.Fragment>
-          <Link to='/signup' className='signup'>
-            Sign Up
-          </Link>
-          <Link to='/signin' className='signin'>
-            Sign In
-          </Link>
-        </React.Fragment>
-      </nav>
-    </div>
+        <nav>
+          <ul>
+            <li className='header--signedin'>
+              {' '}
+              <Link to='/signup'>Sign Up</Link>
+            </li>
+            <li className='.header--signedout '>
+              {' '}
+              <Link to='/signin'>Sign In</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
   );
 };
 

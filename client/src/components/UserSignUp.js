@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
+import Data from './Data';
 
 export default class UserSignUp extends Component {
   state = {
-    name: '',
-    username: '',
+    firstName: '',
+    lastName: '',
+    emailaddress: '',
     password: '',
     errors: [],
   };
 
   render() {
-    const { name, username, password, errors } = this.state;
+    const {
+      firstName,
+      lastName,
+      emailaddress,
+      password,
+      confirmPassword,
+      errors,
+    } = this.state;
 
     return (
-      <div className='bounds'>
-        <div className='grid-33 centered signin'>
+      <div className=''>
+        <div className='form--centered'>
           <h1>Sign Up</h1>
           <Form
             cancel={this.cancel}
@@ -24,29 +33,45 @@ export default class UserSignUp extends Component {
             submitButtonText='Sign Up'
             elements={() => (
               <React.Fragment>
+                <label>First Name</label>
                 <input
-                  id='name'
-                  name='name'
+                  id='firstName'
+                  name='firstName'
                   type='text'
-                  value={name}
+                  value={firstName}
                   onChange={this.change}
-                  placeholder='Name'
                 />
+                <label>Last Name</label>
                 <input
-                  id='username'
-                  name='username'
+                  id='lastName'
+                  name='lastName'
                   type='text'
-                  value={username}
+                  value={lastName}
                   onChange={this.change}
-                  placeholder='User Name'
                 />
+                <label>Email Address</label>
+                <input
+                  id='emailaddress'
+                  name='emailaddress'
+                  type='text'
+                  value={emailaddress}
+                  onChange={this.change}
+                />
+                <label>Password</label>
                 <input
                   id='password'
                   name='password'
                   type='password'
                   value={password}
                   onChange={this.change}
-                  placeholder='Password'
+                />
+                <label>Confirm Password</label>
+                <input
+                  id='confirmPassword'
+                  name='confirmPassword'
+                  type='password'
+                  value={confirmPassword}
+                  onChange={this.change}
                 />
               </React.Fragment>
             )}
@@ -73,12 +98,13 @@ export default class UserSignUp extends Component {
 
   submit = () => {
     const { context } = this.props;
-    const { name, username, password } = this.state;
+    const { firstName, lastName, emailaddress, password } = this.state;
 
     // Create user
     const user = {
-      name,
-      username,
+      firstName,
+      lastName,
+      emailaddress,
       password,
     };
 
@@ -88,7 +114,7 @@ export default class UserSignUp extends Component {
         if (errors.length) {
           this.setState({ errors });
         } else {
-          context.actions.signIn(username, password).then(() => {
+          context.actions.signIn(emailaddress, password).then(() => {
             this.props.history.push('/authenticated');
           });
         }

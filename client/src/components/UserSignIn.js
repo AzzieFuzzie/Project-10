@@ -13,8 +13,8 @@ export default class UserSignIn extends Component {
     const { username, password, errors } = this.state;
 
     return (
-      <div className='bounds'>
-        <div className='grid-33 centered signin'>
+      <div>
+        <div className=' form--centered'>
           <h1>Sign In</h1>
           <Form
             cancel={this.cancel}
@@ -29,7 +29,6 @@ export default class UserSignIn extends Component {
                   type='text'
                   value={username}
                   onChange={this.change}
-                  placeholder='User Name'
                 />
                 <input
                   id='password'
@@ -37,7 +36,6 @@ export default class UserSignIn extends Component {
                   type='password'
                   value={password}
                   onChange={this.change}
-                  placeholder='Password'
                 />
               </React.Fragment>
             )}

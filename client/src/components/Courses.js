@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Data from '../Data';
-import '../styles/global.css';
+
 import { Link } from 'react-router-dom';
 
 const Courses = () => {
@@ -16,13 +15,24 @@ const Courses = () => {
     <div>
       <h1>Courses</h1>
       {courses.map((course) => (
-        <div>
+        <div className='course--module'>
           <h3>Course</h3>
-          <Link key={course.id}>{course.title}</Link>
+          <Link
+            className='course--title'
+            to=' /courses/${course.id}'
+            key={course.id}
+          >
+            {course.title}
+          </Link>
         </div>
       ))}
       <div>
-        <Link to='/courses/create'>+ New Course</Link>
+        <Link
+          className='course--add--module course--add--title add'
+          to='/courses/create'
+        >
+          + New Course
+        </Link>
       </div>
     </div>
   );

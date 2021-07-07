@@ -13,6 +13,26 @@ export default (props) => {
     cancel();
   }
 
+  function ErrorsDisplay({ errors }) {
+    let errorsDisplay = null;
+
+    if (errors.length) {
+      errorsDisplay = (
+        <div>
+          <h2 className=''>Validation errors</h2>
+          <div className=''>
+            <ul>
+              {errors.map((error, i) => (
+                <li key={i}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+    return errorsDisplay;
+  }
+
   return (
     <div>
       <ErrorsDisplay errors={errors} />
@@ -22,7 +42,7 @@ export default (props) => {
           <button className='button' type='submit'>
             {submitButtonText}
           </button>
-          <button className='' onClick={handleCancel}>
+          <button className='button-secondary button' onClick={handleCancel}>
             Cancel
           </button>
         </div>
@@ -30,24 +50,3 @@ export default (props) => {
     </div>
   );
 };
-
-function ErrorsDisplay({ errors }) {
-  let errorsDisplay = null;
-
-  if (errors.length) {
-    errorsDisplay = (
-      <div>
-        <h2 className=''>Validation errors</h2>
-        <div className=''>
-          <ul>
-            {errors.map((error, i) => (
-              <li key={i}>{error}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    );
-  }
-
-  return errorsDisplay;
-}
