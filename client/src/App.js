@@ -6,13 +6,15 @@ import UserSignIn from './components/UserSignIn.js';
 import UserSignOut from './components/UserSignOut.js';
 import Header from './components/Header';
 import Courses from './components/Courses';
+import PrivateRoute from './PrivateRoute';
+import Authenticated from './components/Authenticated';
 import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';
 import './styles/global.css';
 import withContext from './components/Context';
-// import { Provider } from './Context';
 const UserSignUpWithContext = withContext(UserSignUp);
+const UserSignInWithContext = withContext(UserSignIn);
 
 class App extends Component {
   render() {
@@ -24,9 +26,10 @@ class App extends Component {
           <Route exact path='/courses/create' component={CreateCourse} />
           <Route path='/courses/:id/update' component={UpdateCourse} />
           <Route path='/courses/:id' component={CourseDetail} />
-          <Route path='/signin' component={UserSignIn} />
+          <Route path='/signin' component={UserSignInWithContext} />
           <Route path='/signup' component={UserSignUpWithContext} />
           <Route path='/signout' component={UserSignOut} />
+          <PrivateRoute path='/authenticated' component={Authenticated} />
         </div>
       </BrowserRouter>
     );

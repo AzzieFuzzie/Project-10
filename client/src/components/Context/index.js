@@ -14,21 +14,6 @@ export class Provider extends Component {
     this.data = new Data();
   }
 
-  render() {
-    const { authenticatedUser } = this.state;
-    const value = {
-      authenticatedUser,
-      data: this.data,
-      actions: {
-        signIn: this.signIn,
-        signOut: this.signOut,
-      },
-    };
-    return (
-      <Context.Provider value={value}>{this.props.children}</Context.Provider>
-    );
-  }
-
   signIn = async (username, password) => {
     const user = await this.data.getUser(username, password);
     if (user !== null) {
@@ -49,6 +34,21 @@ export class Provider extends Component {
     this.setState({ authenticatedUser: null });
     Cookies.remove('authenticatedUser');
   };
+
+  render() {
+    const { authenticatedUser } = this.state;
+    const value = {
+      authenticatedUser,
+      data: this.data,
+      actions: {
+        signIn: this.signIn,
+        signOut: this.signOut,
+      },
+    };
+    return (
+      <Context.Provider value={value}>{this.props.children}</Context.Provider>
+    );
+  }
 }
 
 export const Consumer = Context.Consumer;

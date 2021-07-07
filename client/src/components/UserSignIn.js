@@ -23,6 +23,7 @@ export default class UserSignIn extends Component {
             submitButtonText='Sign In'
             elements={() => (
               <React.Fragment>
+                <label>Email Address</label>
                 <input
                   id='username'
                   name='username'
@@ -30,6 +31,7 @@ export default class UserSignIn extends Component {
                   value={username}
                   onChange={this.change}
                 />
+                <label>Password</label>
                 <input
                   id='password'
                   name='password'
@@ -41,8 +43,8 @@ export default class UserSignIn extends Component {
             )}
           />
           <p>
-            Don't have a user account? <Link to='/signup'>Click here</Link> to
-            sign up!
+            Don't have a user account? Click here to
+            <Link to='/signup'> sign up!</Link>
           </p>
         </div>
       </div>
