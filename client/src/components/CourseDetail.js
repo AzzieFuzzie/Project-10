@@ -13,6 +13,7 @@ const CourseDetail = () => {
 
   return (
     <div>
+      {console.log(courseDetails)}``
       <div>
         <button className='button' to='/courses/:id/update'>
           Update Course

@@ -4,13 +4,13 @@ import Form from './Form';
 
 export default class UserSignIn extends Component {
   state = {
-    username: '',
+    emailaddress: '',
     password: '',
     errors: [],
   };
 
   render() {
-    const { username, password, errors } = this.state;
+    const { emailaddress, password, errors } = this.state;
 
     return (
       <div>
@@ -25,10 +25,10 @@ export default class UserSignIn extends Component {
               <React.Fragment>
                 <label>Email Address</label>
                 <input
-                  id='username'
-                  name='username'
+                  id='emailaddress'
+                  name='emailaddress'
                   type='text'
-                  value={username}
+                  value={emailaddress}
                   onChange={this.change}
                 />
                 <label>Password</label>
@@ -67,10 +67,10 @@ export default class UserSignIn extends Component {
     const { from } = this.props.location.state || {
       from: { pathname: '/authenticated' },
     };
-    const { username, password } = this.state;
+    const { emailaddress, password } = this.state;
 
     context.actions
-      .signIn(username, password)
+      .signIn(emailaddress, password)
       .then((user) => {
         if (user === null) {
           this.setState(() => {
