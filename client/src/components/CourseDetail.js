@@ -33,7 +33,9 @@ const CourseDetail = () => {
         <p>{courseDetails.estimatedTime}</p>
         <h3 className='course--detail--title'>Materials Needed</h3>
         <ul>
-          <li course--detail--list>{courseDetails.materialsNeeded}</li>
+          <li className='course--detail--list'>
+            {courseDetails.materialsNeeded}
+          </li>
         </ul>
       </div>
     </div>

@@ -12,7 +12,7 @@ import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';
 import './styles/global.css';
 // import './styles/reset.css';
-import withContext from './components/Context';
+import withContext from './context';
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 

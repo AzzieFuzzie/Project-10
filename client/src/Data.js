@@ -89,18 +89,18 @@ export default class Data {
     }
   }
 
-  //   async getCourseDetail(course) {
-  //     const response = await this.api(`/api/courses/:id`, 'GET', null, true, {
-  //       course,
-  //     });
-  //     if (response.status === 200) {
-  //       return response.json().then((data) => data);
-  //     } else if (response.status === 401) {
-  //       return null;
-  //     } else {
-  //       throw new Error();
-  //     }
-  //   }
+  async courseUpdate(course) {
+    const response = await this.api('/courses/:id', 'PUT', null, true, {
+      course,
+    });
+    if (response.status === 200) {
+      return response.json().then((data) => data);
+    } else if (response.status === 401) {
+      return null;
+    } else {
+      throw new Error();
+    }
+  }
 
   //   async getCourse(course) {
   //     const response = await this.api(`/api/courses`, 'GET', null, true, {

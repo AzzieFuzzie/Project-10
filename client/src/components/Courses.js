@@ -31,7 +31,7 @@ const Courses = () => {
           className='course--add--module course--module'
           to='/courses/create'
         >
-          <span className='course--add--title'>New course</span>
+          <span className='course--add--title'>+ New course</span>
         </Link>
       </div>
     </div>
