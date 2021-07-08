@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-// import withContext from './Context';
 import UserSignUp from './components/UserSignUp.js';
 import UserSignIn from './components/UserSignIn.js';
 import UserSignOut from './components/UserSignOut.js';
@@ -12,6 +11,7 @@ import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';
 import './styles/global.css';
+// import './styles/reset.css';
 import withContext from './components/Context';
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);

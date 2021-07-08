@@ -9,12 +9,10 @@ const Header = () => {
 
         <nav>
           <ul>
-            <li className='header--signedin'>
-              {' '}
-              <Link to='/signup'>Sign Up</Link>
-            </li>
+            <Link className='header--signedin' to='/signup'>
+              Sign Up
+            </Link>
             <li className='.header--signedout '>
-              {' '}
               <Link to='/signin'>Sign In</Link>
             </li>
           </ul>

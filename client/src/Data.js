@@ -45,7 +45,7 @@ export default class Data {
   }
 
   async createUser(user) {
-    const response = await this.api('/users/create', 'POST', user);
+    const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {
       return [];
     } else if (response.status === 400) {
@@ -70,6 +70,25 @@ export default class Data {
     }
   }
 
+  async deleteCourse(course) {
+    const response = await this.api(
+      `/api/courses/delete/:id`,
+      'DELETE',
+      null,
+      true,
+      {
+        course,
+      }
+    );
+    if (response.status === 200) {
+      return response.json().then((data) => data);
+    } else if (response.status === 401) {
+      return null;
+    } else {
+      throw new Error();
+    }
+  }
+
   //   async getCourseDetail(course) {
   //     const response = await this.api(`/api/courses/:id`, 'GET', null, true, {
   //       course,
@@ -83,24 +102,6 @@ export default class Data {
   //     }
   //   }
 
-  //   async deleteCourse(course) {
-  //     const response = await this.api(
-  //       `/api/courses/delete/:id`,
-  //       'DELETE',
-  //       null,
-  //       true,
-  //       {
-  //         course,
-  //       }
-  //     );
-  //     if (response.status === 200) {
-  //       return response.json().then((data) => data);
-  //     } else if (response.status === 401) {
-  //       return null;
-  //     } else {
-  //       throw new Error();
-  //     }
-  //   }
   //   async getCourse(course) {
   //     const response = await this.api(`/api/courses`, 'GET', null, true, {
   //       course,

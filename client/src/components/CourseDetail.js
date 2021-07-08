@@ -14,9 +14,13 @@ const CourseDetail = () => {
   return (
     <div>
       <div>
-        <Link to='/courses/:id/update'>Update Course</Link>
-        <Link>Delete Course</Link>
-        <Link to='/'>Return to List</Link>
+        <button className='button' to='/courses/:id/update'>
+          Update Course
+        </button>
+        <button className='button'>Delete Course</button>
+        <Link className='button button-secondary' to='/'>
+          Return to List
+        </Link>
         <h2>Course Detail</h2>
       </div>
       <div>

@@ -15,23 +15,23 @@ const Courses = () => {
     <div>
       <h1>Courses</h1>
       {courses.map((course) => (
-        <div className='course--module'>
-          <h3>Course</h3>
+        <div className=' wrap main--grid'>
           <Link
-            className='course--title'
-            to=' /courses/${course.id}'
+            className='course--link course--module'
+            to=' /courses/${courses.id}'
             key={course.id}
           >
-            {course.title}
+            <h2 className='course--label'>Course</h2>
+            <h3 className='course--title'>{course.title}</h3>
           </Link>
         </div>
       ))}
       <div>
         <Link
-          className='course--add--module course--add--title add'
+          className='course--add--module course--module'
           to='/courses/create'
         >
-          + New Course
+          <span className='course--add--title'>New course</span>
         </Link>
       </div>
     </div>
