@@ -13,8 +13,10 @@ import CreateCourse from './components/CreateCourse';
 import './styles/global.css';
 // import './styles/reset.css';
 import withContext from './context';
+const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
+const UserSignOutWithContext = withContext(UserSignOut);
 const CourseCreateWithContext = withContext(CreateCourse);
 const AuthWithContext = withContext(Authenticated);
 
@@ -23,7 +25,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className='container'>
-          <Header />
+          <HeaderWithContext />
           <Route exact path='/' component={Courses} />
           <Route
             exact
@@ -34,7 +36,7 @@ class App extends Component {
           <Route exact path='/courses/:id' component={CourseDetail} />
           <Route exact path='/signin' component={UserSignInWithContext} />
           <Route exact path='/signup' component={UserSignUpWithContext} />
-          <Route exact path='/signout' component={UserSignOut} />
+          <Route exact path='/signout' component={UserSignOutWithContext} />
           <PrivateRoute
             exact
             path='/authenticated'
