@@ -15,6 +15,8 @@ import './styles/global.css';
 import withContext from './context';
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
+const CourseCreateWithContext = withContext(CreateCourse);
+const AuthWithContext = withContext(Authenticated);
 
 class App extends Component {
   render() {
@@ -23,13 +25,21 @@ class App extends Component {
         <div className='container'>
           <Header />
           <Route exact path='/' component={Courses} />
-          <Route exact path='/courses/create' component={CreateCourse} />
-          <Route path='/courses/:id/update' component={UpdateCourse} />
-          <Route path='/courses/:id' component={CourseDetail} />
-          <Route path='/signin' component={UserSignInWithContext} />
-          <Route path='/signup' component={UserSignUpWithContext} />
-          <Route path='/signout' component={UserSignOut} />
-          <PrivateRoute path='/authenticated' component={Authenticated} />
+          <Route
+            exact
+            path='/courses/create'
+            component={CourseCreateWithContext}
+          />
+          <Route exact path='/courses/:id/update' component={UpdateCourse} />
+          <Route exact path='/courses/:id' component={CourseDetail} />
+          <Route exact path='/signin' component={UserSignInWithContext} />
+          <Route exact path='/signup' component={UserSignUpWithContext} />
+          <Route exact path='/signout' component={UserSignOut} />
+          <PrivateRoute
+            exact
+            path='/authenticated'
+            component={AuthWithContext}
+          />
         </div>
       </BrowserRouter>
     );

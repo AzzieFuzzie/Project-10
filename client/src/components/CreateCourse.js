@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import Errors from './errors';
 
 class CreateCourse extends Component {
   state = {
@@ -36,15 +37,13 @@ class CreateCourse extends Component {
 
     context.data
       .createCourse(course)
-      // .then((errors) => {
-      //   if (errors.length) {
-      //     this.setState({ errors });
-      //   } else {
-      //     context.actions.signIn(username, password).then(() => {
-      //       this.props.history.push('/authenticated');
-      //     });
-      //   }
-      // })
+      .then((error) => {
+        if (error.length > 0) {
+          return <Errors />;
+        } else {
+          this.props.history.push('/courses/create');
+        }
+      })
       .catch((err) => {
         console.log(err);
         this.props.history.push('/error');
@@ -60,28 +59,23 @@ class CreateCourse extends Component {
 
     return (
       <div>
-        <p>Welcome,{}</p>
         <h1>Create Course</h1>
-        <div className='validation--errors'>
-          <h3 className='validation--errors'>Validation Errors</h3>
-          <ul className='validation--errors'>
-            <li className='validation--errors'>
-              Please provide a value for "Title"
-            </li>
-            <li className='validation--errors'>
-              Please provide a value for "Description"
-            </li>
-          </ul>
-        </div>
+
         <Form
           cancel={this.cancel}
           errors={errors}
           submit={this.submit}
-          submitButtonText='Sign Up'
+          submitButtonText='Create course'
           elements={() => (
             <React.Fragment>
               <label>Course Title</label>
-              <input type='text' value={title} id='1' name='title' />
+              <input
+                type='text'
+                value={title}
+                id='1'
+                name='title'
+                onChange={this.change}
+              />
 
               <p>By{}</p>
 
@@ -91,6 +85,7 @@ class CreateCourse extends Component {
                 value={description}
                 id='2'
                 name='description'
+                onChange={this.change}
               />
 
               <label>Estimated Time</label>
@@ -99,6 +94,7 @@ class CreateCourse extends Component {
                 value={estimatedTime}
                 id='3'
                 name='estimatedTime'
+                onChange={this.change}
               />
 
               <label>Materials Needed</label>
@@ -107,6 +103,7 @@ class CreateCourse extends Component {
                 value={materialsNeeded}
                 id='4'
                 name='materialsNeeded'
+                onChange={this.change}
               />
             </React.Fragment>
           )}

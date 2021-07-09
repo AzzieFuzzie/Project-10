@@ -33,7 +33,7 @@ class UpdateCourse extends React.Component {
       estimatedTime,
     };
 
-    context.data
+    context
       .createCourse(course)
       // .then((errors) => {
       //   if (errors.length) {
