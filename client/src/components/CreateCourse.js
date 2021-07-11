@@ -3,6 +3,11 @@ import Form from './Form';
 import Errors from './errors';
 import Context from '../context';
 
+// data
+const context = Context;
+const signIn = context.authenticatedUser;
+console.log(signIn);
+
 class CreateCourse extends Component {
   state = {
     title: '',
@@ -15,10 +20,6 @@ class CreateCourse extends Component {
   render() {
     const { title, description, materialsNeeded, estimatedTime, errors } =
       this.state;
-
-    // data
-    const context = Context;
-    const signIn = context.authedUser;
 
     return (
       <div>
@@ -98,7 +99,7 @@ class CreateCourse extends Component {
     };
 
     context.data
-      .createCourse(course, signIn.emailAddress, signIn.password)
+      .createCourse(course, signIn.emailaddress, signIn.password)
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
