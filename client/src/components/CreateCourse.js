@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Form from './Form';
 import Errors from './errors';
+import Context from '../context';
 
 class CreateCourse extends Component {
   state = {
@@ -11,51 +12,13 @@ class CreateCourse extends Component {
     errors: [],
   };
 
-  change = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    this.setState(() => {
-      return {
-        [name]: value,
-      };
-    });
-  };
-
-  submit = () => {
-    const { context } = this.props;
-    const { title, descrition, materialsNeeded, estimatedTime, errors } =
-      this.state;
-
-    // Create course
-    const course = {
-      title,
-      descrition,
-      materialsNeeded,
-      estimatedTime,
-    };
-
-    context.data
-      .createCourse(course)
-      .then((error) => {
-        if (error.length > 0) {
-          return <Errors />;
-        } else {
-          this.props.history.push('/courses/create');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        this.props.history.push('/error');
-      });
-  };
-
-  cancel = () => {
-    this.props.history.push('/');
-  };
   render() {
     const { title, description, materialsNeeded, estimatedTime, errors } =
       this.state;
+
+    // data
+    const context = Context;
+    const signIn = context.authedUser;
 
     return (
       <div>
@@ -111,6 +74,48 @@ class CreateCourse extends Component {
       </div>
     );
   }
+  change = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    this.setState(() => {
+      return {
+        [name]: value,
+      };
+    });
+  };
+
+  submit = () => {
+    const { context } = this.props;
+    const { title, descrition, materialsNeeded, estimatedTime } = this.state;
+
+    // Create course
+    const course = {
+      title,
+      descrition,
+      materialsNeeded,
+      estimatedTime,
+    };
+
+    context.data
+      .createCourse(course, signIn.emailAddress, signIn.password)
+      .then((errors) => {
+        if (errors.length) {
+          this.setState({ errors });
+          return <Errors />;
+        } else {
+          this.props.history.push('/courses/create');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push('/error');
+      });
+  };
+
+  cancel = () => {
+    this.props.history.push('/');
+  };
 }
 
 export default CreateCourse;

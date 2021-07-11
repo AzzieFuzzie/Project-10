@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const CourseDetail = () => {
+const CourseDetail = ({ context }) => {
+  const authUser = context.authenticatedUser;
   const [courseDetails, setCourseDetails] = useState([]);
   const { id } = useParams();
   useEffect(() => {
@@ -13,7 +14,7 @@ const CourseDetail = () => {
 
   return (
     <div>
-      {console.log(courseDetails)}``
+      {console.log(courseDetails)}
       <div>
         <button className='button' to='/courses/:id/update'>
           Update Course

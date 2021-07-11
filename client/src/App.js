@@ -19,6 +19,7 @@ const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CourseCreateWithContext = withContext(CreateCourse);
 const AuthWithContext = withContext(Authenticated);
+const CourseDetailWithContext = withContext(CourseDetail);
 
 class App extends Component {
   render() {
@@ -33,7 +34,11 @@ class App extends Component {
             component={CourseCreateWithContext}
           />
           <Route exact path='/courses/:id/update' component={UpdateCourse} />
-          <Route exact path='/courses/:id' component={CourseDetail} />
+          <Route
+            exact
+            path='/courses/:id'
+            component={CourseDetailWithContext}
+          />
           <Route exact path='/signin' component={UserSignInWithContext} />
           <Route exact path='/signup' component={UserSignUpWithContext} />
           <Route exact path='/signout' component={UserSignOutWithContext} />
