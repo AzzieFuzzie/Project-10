@@ -39,8 +39,8 @@ class UpdateCourse extends React.Component {
       //   if (errors.length) {
       //     this.setState({ errors });
       //   } else {
-      //     context.actions.signIn(username, password).then(() => {
-      //       this.props.history.push('/authenticated');
+      //     context.actions.signIn(emailaddress, password).then(() => {
+      //       this.props.history.push('/courses/update');
       //     });
       //   }
       // })

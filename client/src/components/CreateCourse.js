@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
-import Errors from './errors';
-import Context from '../context';
-
-// data
-const context = Context;
-const signIn = context.authenticatedUser;
-console.log(signIn);
+import Errors from './Errors';
 
 class CreateCourse extends Component {
   state = {
@@ -88,7 +82,8 @@ class CreateCourse extends Component {
 
   submit = () => {
     const { context } = this.props;
-    const { title, descrition, materialsNeeded, estimatedTime } = this.state;
+    const { title, descrition, materialsNeeded, estimatedTime, errors } =
+      this.state;
 
     // Create course
     const course = {
@@ -97,9 +92,9 @@ class CreateCourse extends Component {
       materialsNeeded,
       estimatedTime,
     };
-
+    const authUser = context.authenticatedUser;
     context.data
-      .createCourse(course, signIn.emailaddress, signIn.password)
+      .createCourse(course, authUser.emailaddress, authUser.password)
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import DeleteCourse from './DeleteCourse';
 
 const CourseDetail = ({ context }) => {
   const authUser = context.authenticatedUser;
@@ -19,7 +20,8 @@ const CourseDetail = ({ context }) => {
         <button className='button' to='/courses/:id/update'>
           Update Course
         </button>
-        <button className='button'>Delete Course</button>
+        {/* Delete button */}
+        {/* <DeleteCourse /> */}
         <Link className='button button-secondary' to='/'>
           Return to List
         </Link>
