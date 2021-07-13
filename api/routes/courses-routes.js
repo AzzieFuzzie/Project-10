@@ -35,10 +35,9 @@ router.get(
   })
 );
 
-// READS/RETRIEVES a user with corresponding ID.
+// READS/RETRIEVES a course with corresponding ID.
 router.get(
   '/:id',
-  authenticateUser,
   asyncHandler(async (req, res) => {
     const course = await Courses.findByPk(req.params.id);
     if (course) {
@@ -49,7 +48,7 @@ router.get(
   })
 );
 
-// UPDATES a user with corresponding ID.
+// UPDATES a course with corresponding ID.
 router.put(
   '/:id',
   authenticateUser,
@@ -70,7 +69,7 @@ router.put(
   })
 );
 
-// DELETES a user with corresponding ID.
+// DELETES a course with corresponding ID.
 router.delete(
   '/delete/:id',
   authenticateUser,

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import DeleteCourse from './DeleteCourse';
+// import DeleteCourse from './DeleteCourse';
 
-const CourseDetail = ({ context }) => {
-  const authUser = context.authenticatedUser;
+const CourseDetail = () => {
   const [courseDetails, setCourseDetails] = useState([]);
   const { id } = useParams();
   useEffect(() => {
