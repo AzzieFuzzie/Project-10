@@ -57,15 +57,31 @@ export default class Data {
     }
   }
 
+  // async createCourse(course, emailaddress, password) {
+  //   const response = await this.api('/courses', 'POST', course, true, {
+  //     emailaddress,
+  //     password,
+  //   });
+  //   if (response.status === 200) {
+  //     return response.json().then((data) => data);
+  //   } else if (response.status === 401) {
+  //     return null;
+  //   } else {
+  //     throw new Error();
+  //   }
+  // }
+
   async createCourse(course, emailaddress, password) {
     const response = await this.api('/courses', 'POST', course, true, {
       emailaddress,
       password,
     });
-    if (response.status === 200) {
-      return response.json().then((data) => data);
-    } else if (response.status === 401) {
-      return null;
+    if (response.status === 201) {
+      return [];
+    } else if (response.status === 400) {
+      return response.json().then((data) => {
+        return data.errors;
+      });
     } else {
       throw new Error();
     }
