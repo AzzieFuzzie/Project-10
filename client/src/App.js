@@ -25,30 +25,28 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
+        <HeaderWithContext />
         <Switch>
-          <div className='container'>
-            <HeaderWithContext />
-            <Route exact path='/' component={Courses} />
-            <Route
-              exact
-              path='/courses/create'
-              component={CourseCreateWithContext}
-            />
-            <Route exact path='/courses/:id/update' component={UpdateCourse} />
-            <Route
-              exact
-              path='/courses/:id'
-              component={CourseDetailWithContext}
-            />
-            <Route exact path='/signin' component={UserSignInWithContext} />
-            <Route exact path='/signup' component={UserSignUpWithContext} />
-            <Route exact path='/signout' component={UserSignOutWithContext} />
-            <PrivateRoute
-              exact
-              path='/authenticated'
-              component={AuthWithContext}
-            />
-          </div>
+          <Route exact path='/' component={Courses} />
+          <Route
+            exact
+            path='/courses/create'
+            component={CourseCreateWithContext}
+          />
+          <Route exact path='/courses/:id/update' component={UpdateCourse} />
+          <Route
+            exact
+            path='/courses/:id'
+            component={CourseDetailWithContext}
+          />
+          <Route exact path='/signin' component={UserSignInWithContext} />
+          <Route exact path='/signup' component={UserSignUpWithContext} />
+          <Route exact path='/signout' component={UserSignOutWithContext} />
+          <PrivateRoute
+            exact
+            path='/authenticated'
+            component={AuthWithContext}
+          />
         </Switch>
       </BrowserRouter>
     );
