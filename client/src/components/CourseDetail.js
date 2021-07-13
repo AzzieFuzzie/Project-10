@@ -16,9 +16,9 @@ const CourseDetail = () => {
     <div>
       {console.log(courseDetails)}
       <div>
-        <button className='button' to='/courses/:id/update'>
+        <Link className='button' to={`/courses/${courseDetails.id}/update`}>
           Update Course
-        </button>
+        </Link>
         {/* Delete button */}
         {/* <DeleteCourse /> */}
         <Link className='button button-secondary' to='/'>

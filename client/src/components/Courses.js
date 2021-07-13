@@ -18,7 +18,7 @@ const Courses = () => {
         <div className=' wrap main--grid'>
           <Link
             className='course--link course--module'
-            to=' /courses/${courses.id}'
+            to={`/courses/${course.id}`}
             key={course.id}
           >
             <h2 className='course--label'>Course</h2>
