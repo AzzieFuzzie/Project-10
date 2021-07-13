@@ -43,7 +43,7 @@ router.get(
     if (course) {
       res.json(course);
     } else {
-      res.status(404).json({ message: 'Course was not found' }.end());
+      res.status(404).json({ message: 'Course was not found' });
     }
   })
 );
