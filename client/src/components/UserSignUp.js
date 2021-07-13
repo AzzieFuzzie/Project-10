@@ -6,7 +6,7 @@ export default class UserSignUp extends Component {
   state = {
     firstName: '',
     lastName: '',
-    emailaddress: '',
+    emailAddress: '',
     password: '',
     errors: [],
   };
@@ -15,7 +15,7 @@ export default class UserSignUp extends Component {
     const {
       firstName,
       lastName,
-      emailaddress,
+      emailAddress,
       password,
       confirmPassword,
       errors,
@@ -50,10 +50,10 @@ export default class UserSignUp extends Component {
                 />
                 <label>Email Address</label>
                 <input
-                  id='emailaddress'
-                  name='emailaddress'
+                  id='emailAddress'
+                  name='emailAddress'
                   type='text'
-                  value={emailaddress}
+                  value={emailAddress}
                   onChange={this.change}
                 />
                 <label>Password</label>
@@ -97,13 +97,13 @@ export default class UserSignUp extends Component {
 
   submit = () => {
     const { context } = this.props;
-    const { firstName, lastName, emailaddress, password } = this.state;
+    const { firstName, lastName, emailAddress, password } = this.state;
 
     // Create user
     const user = {
       firstName,
       lastName,
-      emailaddress,
+      emailAddress,
       password,
     };
 
@@ -113,7 +113,7 @@ export default class UserSignUp extends Component {
         if (errors.length) {
           this.setState({ errors });
         } else {
-          context.actions.signIn(emailaddress, password).then(() => {
+          context.actions.signIn(emailAddress, password).then(() => {
             this.props.history.push('/authenticated');
           });
         }

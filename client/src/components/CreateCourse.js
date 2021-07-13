@@ -95,7 +95,7 @@ class CreateCourse extends Component {
     const authUser = context.authenticatedUser;
     console.log(authUser);
     context.data
-      .createCourse(course, authUser.emailaddress, authUser.password)
+      .createCourse(course, authUser.emailAddress, authUser.password)
       .then(console.log(course))
       .then((errors) => {
         if (errors.length) {
