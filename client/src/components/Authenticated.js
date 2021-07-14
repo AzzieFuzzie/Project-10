@@ -6,7 +6,7 @@ export default ({ context }) => {
   return (
     <div className='bounds'>
       <div className='grid-100'>
-        <h1>{authUser.emailaddress} is authenticated!</h1>
+        <h1>{authUser.emailAddress} is authenticated!</h1>
         <p>Your username is {authUser.firstName}.</p>
         <Redirect to='/courses/create' />
       </div>
