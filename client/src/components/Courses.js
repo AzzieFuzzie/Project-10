@@ -27,7 +27,10 @@ const Courses = () => {
         </div>
       ))}
       <div>
-        <Link className='course--add--module course--module' to='./signIn'>
+        <Link
+          className='course--add--module course--module'
+          to={'/courses/create'}
+        >
           <span className='course--add--title'>+ New course</span>
         </Link>
       </div>

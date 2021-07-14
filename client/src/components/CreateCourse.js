@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
 import Errors from './Errors';
-import Consumer from '../context';
 
 class CreateCourse extends Component {
   state = {

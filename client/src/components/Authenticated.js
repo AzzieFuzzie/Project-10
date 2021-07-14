@@ -8,7 +8,7 @@ export default ({ context }) => {
       <div className='grid-100'>
         <h1>{authUser.emailAddress} is authenticated!</h1>
         <p>Your username is {authUser.firstName}.</p>
-        <Redirect to='/courses/create' />
+        <Redirect to='/' />
       </div>
     </div>
   );

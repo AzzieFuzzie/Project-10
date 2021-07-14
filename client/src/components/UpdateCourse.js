@@ -111,9 +111,18 @@ class UpdateCourse extends Component {
   submit = () => {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
+    const { title, description, materialsNeeded, estimatedTime } = this.state;
+
+    // Updated course
+    const updatedCourse = {
+      title,
+      description,
+      materialsNeeded,
+      estimatedTime,
+    };
 
     context.data
-      .updateCourse(authUser.emailAddress, authUser.password)
+      .updateCourse(updatedCourse, authUser.emailAddress, authUser.password)
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });

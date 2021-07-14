@@ -29,12 +29,12 @@ class App extends Component {
         <HeaderWithContext />
         <Switch>
           <Route exact path='/' component={Courses} />
-          <Route
+          <PrivateRoute
             exact
             path='/courses/create'
             component={CourseCreateWithContext}
           />
-          <Route
+          <PrivateRoute
             exact
             path='/courses/:id/update'
             component={UpdateCourseWithContext}
