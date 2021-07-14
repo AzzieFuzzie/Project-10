@@ -11,34 +11,16 @@ class UpdateCourse extends Component {
     errors: [],
   };
 
-  retrieveCourse = () => {
-    const context = this.props;
-    const authUser = context.authenticatedUser;
-    const id = this.props.match.params.id;
-    console.log(context.match.params.id);
+  componentDidMount() {
+    this.retrieveCourse();
+  }
 
-    context.data
-      .getOneCourse(id, authUser.emailAddress, authUser.password)
-      .then(console.log(id))
-      .then((data) => {
-        this.setState({
-          title: data.title,
-          descrition: data.description,
-          materialsNeeded: data.materialsNeeded,
-          estimatedTime: data.estimatedTime,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.props.history.push('/error');
-      });
-  };
   render() {
     const { title, description, materialsNeeded, estimatedTime, errors } =
       this.state;
 
     return (
-      <div>
+      <div className='wrap'>
         <h1>Update Course</h1>
 
         <Form
@@ -48,39 +30,45 @@ class UpdateCourse extends Component {
           submitButtonText='Update course'
           elements={() => (
             <React.Fragment>
-              <label>Course Title</label>
-              <input
-                id='1'
-                type='text'
-                value={title}
-                onChange={this.change}
-                name='title'
-              />
-              <p>By {}</p>
-              <label>Course Description</label>
-              <input
-                id='2'
-                type='text'
-                value={description}
-                onChange={this.change}
-                name='description'
-              />
-              <label>Estimated Time</label>
-              <input
-                id='3'
-                type='text'
-                value={estimatedTime}
-                onChange={this.change}
-                name='estimatedTime'
-              />
-              <label>Materials Needed</label>
-              <input
-                id='4'
-                type='text'
-                value={materialsNeeded}
-                onChange={this.change}
-                name='materialsNeeded'
-              />
+              <div className='main--grid'>
+                <div>
+                  <label>Course Title</label>
+                  <input
+                    id='1'
+                    type='text'
+                    value={title}
+                    onChange={this.change}
+                    name='title'
+                  />
+                  <p>By {}</p>
+                  <label>Course Description</label>
+                  <textarea
+                    id='2'
+                    type='text'
+                    value={description}
+                    onChange={this.change}
+                    name='description'
+                  ></textarea>
+                </div>
+                <div>
+                  <label>Estimated Time</label>
+                  <input
+                    id='3'
+                    type='text'
+                    value={estimatedTime}
+                    onChange={this.change}
+                    name='estimatedTime'
+                  />
+                  <label>Materials Needed</label>
+                  <textarea
+                    id='4'
+                    type='text'
+                    value={materialsNeeded}
+                    onChange={this.change}
+                    name='materialsNeeded'
+                  ></textarea>
+                </div>
+              </div>
             </React.Fragment>
           )}
         />
@@ -89,6 +77,25 @@ class UpdateCourse extends Component {
   }
 
   // Retrieves single course
+  retrieveCourse = () => {
+    const { context } = this.props;
+    const id = this.props.match.params.id;
+
+    context.data
+      .getOneCourse(id)
+      .then((data) => {
+        this.setState({
+          title: data.title,
+          description: data.description,
+          materialsNeeded: data.materialsNeeded,
+          estimatedTime: data.estimatedTime,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push('/error');
+      });
+  };
 
   change = (event) => {
     const name = event.target.name;
@@ -104,15 +111,9 @@ class UpdateCourse extends Component {
   submit = () => {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
-    console.log(context.match.params.id);
 
     context.data
-      .updateCourse(
-        context.match.params.id,
-        authUser.emailAddress,
-        authUser.password
-      )
-
+      .updateCourse(authUser.emailAddress, authUser.password)
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });

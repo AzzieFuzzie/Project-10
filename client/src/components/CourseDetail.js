@@ -31,6 +31,7 @@ const CourseDetail = () => {
         <h3 className='course--name'>{courseDetails.title}</h3>
         <p>By{}</p>
         <p>{courseDetails.description}</p>
+
         <h3 className='course--detail--title'>Estimated Time</h3>
         <p>{courseDetails.estimatedTime}</p>
         <h3 className='course--detail--title'>Materials Needed</h3>

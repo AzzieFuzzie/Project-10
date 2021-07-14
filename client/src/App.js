@@ -18,6 +18,7 @@ const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CourseCreateWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 const AuthWithContext = withContext(Authenticated);
 const CourseDetailWithContext = withContext(CourseDetail);
 
@@ -33,7 +34,11 @@ class App extends Component {
             path='/courses/create'
             component={CourseCreateWithContext}
           />
-          <Route exact path='/courses/:id/update' component={UpdateCourse} />
+          <Route
+            exact
+            path='/courses/:id/update'
+            component={UpdateCourseWithContext}
+          />
           <Route
             exact
             path='/courses/:id'
