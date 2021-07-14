@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Errors from './Errors';
-import Form from './Form';
 
 class DeleteCourse extends Component {
   state = {};
