@@ -16,7 +16,7 @@ class CreateCourse extends Component {
       this.state;
 
     return (
-      <div>
+      <div className='wrap'>
         <h1>Create Course</h1>
 
         <Form
@@ -26,43 +26,48 @@ class CreateCourse extends Component {
           submitButtonText='Create course'
           elements={() => (
             <React.Fragment>
-              <label>Course Title</label>
-              <input
-                type='text'
-                value={title}
-                id='1'
-                name='title'
-                onChange={this.change}
-              />
+              <div className='main--flex '>
+                <div>
+                  <label>Course Title</label>
+                  <input
+                    type='text'
+                    value={title}
+                    id='1'
+                    name='title'
+                    onChange={this.change}
+                  />
 
-              <p>By{}</p>
+                  <p>By{}</p>
 
-              <label>Course Description</label>
-              <input
-                type='text'
-                value={description}
-                id='2'
-                name='description'
-                onChange={this.change}
-              />
+                  <label>Course Description</label>
+                  <textarea
+                    type='text'
+                    value={description}
+                    id='2'
+                    name='description'
+                    onChange={this.change}
+                  ></textarea>
+                </div>
+                <div>
+                  <label>Estimated Time</label>
+                  <input
+                    type='text'
+                    value={estimatedTime}
+                    id='3'
+                    name='estimatedTime'
+                    onChange={this.change}
+                  />
 
-              <label>Estimated Time</label>
-              <input
-                type='text'
-                value={estimatedTime}
-                id='3'
-                name='estimatedTime'
-                onChange={this.change}
-              />
-
-              <label>Materials Needed</label>
-              <input
-                type='text'
-                value={materialsNeeded}
-                id='4'
-                name='materialsNeeded'
-                onChange={this.change}
-              />
+                  <label>Materials Needed</label>
+                  <textarea
+                    type='text'
+                    value={materialsNeeded}
+                    id='4'
+                    name='materialsNeeded'
+                    onChange={this.change}
+                  ></textarea>
+                </div>
+              </div>
             </React.Fragment>
           )}
         />

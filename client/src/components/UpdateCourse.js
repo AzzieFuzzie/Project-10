@@ -111,14 +111,16 @@ class UpdateCourse extends Component {
   submit = () => {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
-    const { title, description, materialsNeeded, estimatedTime } = this.state;
+    const id = this.props.match.params.id;
 
+    const { title, description, materialsNeeded, estimatedTime } = this.state;
     // Updated course
     const updatedCourse = {
       title,
       description,
       materialsNeeded,
       estimatedTime,
+      id,
     };
 
     context.data

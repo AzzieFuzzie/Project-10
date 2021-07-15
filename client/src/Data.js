@@ -73,13 +73,19 @@ export default class Data {
 
   // Update course api route
   async updateCourse(course, emailAddress, password) {
-    const response = await this.api('/courses/:id', 'PUT', course, true, {
-      emailAddress,
-      password,
-    });
-    if (response.status === 201) {
+    const response = await this.api(
+      `/courses/${course.id}`,
+      'PUT',
+      course,
+      true,
+      {
+        emailAddress,
+        password,
+      }
+    );
+    if (response.status === 204) {
       return [];
-    } else if (response.status === 401) {
+    } else if (response.status === 404) {
       return null;
     } else {
       throw new Error();
@@ -106,7 +112,7 @@ export default class Data {
   // Delete course api route
   async deleteCourse(course, emailAddress, password) {
     const response = await this.api(
-      'courses/delete/:id',
+      `/courses/delete/${course.id}`,
       'DELETE',
       null,
       true,

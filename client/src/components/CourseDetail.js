@@ -8,14 +8,16 @@ const CourseDetail = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((res) => res.json())
-      .then((data) => setCourseDetails(data))
-      .catch((error) => console.log('Error fetching and parsing data', error));
+      .then((courseDetails) => setCourseDetails(courseDetails))
+      .catch((error) =>
+        console.log('Error fetching and parsing courseDetails', error)
+      );
   }, []);
 
   return (
-    <div className='wrap'>
+    <div>
       {/* {console.log(courseDetails)} */}
-      <div className='actions--bar'>
+      <div className='actions--bar '>
         <Link className='button' to={`/courses/${courseDetails.id}/update`}>
           Update Course
         </Link>
@@ -26,7 +28,7 @@ const CourseDetail = () => {
         </Link>
       </div>
 
-      <div className=' main--flex  '>
+      <div className=' main--flex wrap'>
         <div>
           <h2>Course Detail</h2>
           <h3 className='course--detail--title'>Course</h3>
@@ -36,13 +38,18 @@ const CourseDetail = () => {
         </div>
         <div>
           <h3 className='course--detail--title'>Estimated Time</h3>
-          <p>{courseDetails.estimatedTime}</p>
-
+          {courseDetails.estimatedTime ? (
+            <p>{courseDetails.estimatedTime}</p>
+          ) : (
+            <p>N/A</p>
+          )}
           <h3 className='course--detail--title'>Materials Needed</h3>
           <ul>
-            <li className='course--detail--list'>
-              {courseDetails.materialsNeeded}
-            </li>
+            {courseDetails.materialsNeeded ? (
+              <li>{courseDetails.materialsNeeded}</li>
+            ) : (
+              <p>*No materials needed.</p>
+            )}
           </ul>
         </div>
       </div>

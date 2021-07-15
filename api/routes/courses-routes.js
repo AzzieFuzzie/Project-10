@@ -64,7 +64,7 @@ router.put(
         res.status(404).json({ message: 'Course was not found' });
       }
     } catch (error) {
-      res.status(500).json({ message: 'Course not found' });
+      res.status(500).json({ message: 'Server error' });
     }
   })
 );

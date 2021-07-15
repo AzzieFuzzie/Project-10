@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Errors from './Errors';
 
 class DeleteCourse extends Component {
-  state = {};
-
   render() {
     return (
       <button className='button' onClick={this.submit}>
