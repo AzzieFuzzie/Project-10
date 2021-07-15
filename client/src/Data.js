@@ -77,8 +77,8 @@ export default class Data {
       emailAddress,
       password,
     });
-    if (response.status === 200) {
-      return response.json().then((data) => data);
+    if (response.status === 201) {
+      return [];
     } else if (response.status === 401) {
       return null;
     } else {

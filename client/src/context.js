@@ -7,6 +7,7 @@ const Context = React.createContext();
 export class Provider extends Component {
   state = {
     authenticatedUser: Cookies.getJSON('authenticatedUser') || null,
+    password: Cookies.getJSON('password') || null,
   };
 
   constructor() {
@@ -16,8 +17,10 @@ export class Provider extends Component {
 
   signIn = async (emailAddress, password) => {
     const user = await this.data.getUser(emailAddress, password);
+    const pass = password;
     if (user !== null) {
       this.setState(() => {
+        user.password = pass;
         return {
           authenticatedUser: user,
         };
@@ -36,10 +39,11 @@ export class Provider extends Component {
   };
 
   render() {
-    const { authenticatedUser } = this.state;
+    const { authenticatedUser, password } = this.state;
     const value = {
       authenticatedUser,
       data: this.data,
+      password,
       actions: {
         signIn: this.signIn,
         signOut: this.signOut,

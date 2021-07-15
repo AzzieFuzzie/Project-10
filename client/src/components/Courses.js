@@ -12,10 +12,9 @@ const Courses = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Courses</h1>
+    <div className='main--grid wrap'>
       {courses.map((course) => (
-        <div className=' wrap main--grid'>
+        <div className=' '>
           <Link
             className='course--link course--module'
             to={`/courses/${course.id}`}
@@ -31,7 +30,7 @@ const Courses = () => {
           className='course--add--module course--module'
           to={'/courses/create'}
         >
-          <span className='course--add--title'>+ New course</span>
+          <span className='course--add--title '>+ New course</span>
         </Link>
       </div>
     </div>

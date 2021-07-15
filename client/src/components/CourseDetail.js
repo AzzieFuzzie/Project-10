@@ -13,9 +13,9 @@ const CourseDetail = () => {
   }, []);
 
   return (
-    <div>
-      {console.log(courseDetails)}
-      <div>
+    <div className='wrap'>
+      {/* {console.log(courseDetails)} */}
+      <div className='actions--bar'>
         <Link className='button' to={`/courses/${courseDetails.id}/update`}>
           Update Course
         </Link>
@@ -24,22 +24,27 @@ const CourseDetail = () => {
         <Link className='button button-secondary' to='/'>
           Return to List
         </Link>
-        <h2>Course Detail</h2>
       </div>
-      <div>
-        <h3 className='course--detail--title'>Course</h3>
-        <h3 className='course--name'>{courseDetails.title}</h3>
-        <p>By{}</p>
-        <p>{courseDetails.description}</p>
 
-        <h3 className='course--detail--title'>Estimated Time</h3>
-        <p>{courseDetails.estimatedTime}</p>
-        <h3 className='course--detail--title'>Materials Needed</h3>
-        <ul>
-          <li className='course--detail--list'>
-            {courseDetails.materialsNeeded}
-          </li>
-        </ul>
+      <div className=' main--flex  '>
+        <div>
+          <h2>Course Detail</h2>
+          <h3 className='course--detail--title'>Course</h3>
+          <h3 className='course--name'>{courseDetails.title}</h3>
+          <p>By{}</p>
+          <p>{courseDetails.description}</p>
+        </div>
+        <div>
+          <h3 className='course--detail--title'>Estimated Time</h3>
+          <p>{courseDetails.estimatedTime}</p>
+
+          <h3 className='course--detail--title'>Materials Needed</h3>
+          <ul>
+            <li className='course--detail--list'>
+              {courseDetails.materialsNeeded}
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );
