@@ -4,14 +4,9 @@ import Errors from './Errors';
 class DeleteCourse extends Component {
   state = {};
 
-  handleSubmit(event) {
-    event.preventDefault();
-    submit();
-  }
-
   render() {
     return (
-      <button className='button' onSubmit={this.submit}>
+      <button className='button' onClick={this.submit}>
         Delete course
       </button>
     );
@@ -19,7 +14,7 @@ class DeleteCourse extends Component {
 
   submit = () => {
     const { context } = this.props;
-    const authUser = context.authenticatedUser;
+    const authUser = this.props.authenticatedUser;
     const id = this.props.match.params.id;
 
     context.data
@@ -48,6 +43,11 @@ class DeleteCourse extends Component {
       };
     });
   };
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.submit();
+  }
 }
 
 export default DeleteCourse;
