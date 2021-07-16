@@ -33,8 +33,8 @@ router.post(
     console.log(req.body);
     try {
       const user = await Users.create(req.body);
-
-      res.status(201).json({ message: 'Account successfully created!' });
+      res.location('/');
+      res.status(201).end();
     } catch (error) {
       if (
         error.name === 'SequelizeValidationError' ||

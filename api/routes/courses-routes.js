@@ -3,7 +3,9 @@ const router = express.Router();
 const { authenticateUser } = require('../auth-user');
 router.use(express.json());
 const { Courses } = require('../models');
+const { Users } = require('../models');
 
+// Handler function to wrap each route.
 asyncHandler = (cb) => {
   return async (req, res, next) => {
     try {
@@ -21,8 +23,22 @@ router.post(
   '/',
   authenticateUser,
   asyncHandler(async (req, res) => {
-    const course = await Courses.create(req.body);
-    res.status(201).json({ message: 'Course created succesfully' });
+    console.log(req.body);
+    try {
+      const course = await Courses.create(req.body);
+      res.location(`/api/courses/${course.id}`);
+      res.status(201).end();
+    } catch (error) {
+      if (
+        error.name === 'SequelizeValidationError' ||
+        error.name === 'SequelizeUniqueConstraintError'
+      ) {
+        const errors = error.errors.map((err) => err.message);
+        res.status(400).json({ errors });
+      } else {
+        throw error;
+      }
+    }
   })
 );
 
@@ -30,8 +46,18 @@ router.post(
 router.get(
   '/',
   asyncHandler(async (req, res) => {
-    const course = await Courses.findAll();
-    res.json(course);
+    const course = await Courses.findAll({
+      include: [
+        {
+          model: Users,
+        },
+      ],
+    });
+    if (course) {
+      res.json(course);
+    } else {
+      res.status(404).json({ message: 'Course was not found' });
+    }
   })
 );
 
@@ -39,7 +65,16 @@ router.get(
 router.get(
   '/:id',
   asyncHandler(async (req, res) => {
-    const course = await Courses.findByPk(req.params.id);
+    const course = await Courses.findAll({
+      where: {
+        id: req.params.id,
+      },
+      include: [
+        {
+          model: Users,
+        },
+      ],
+    });
     if (course) {
       res.json(course);
     } else {
@@ -53,30 +88,40 @@ router.put(
   '/:id',
   authenticateUser,
   asyncHandler(async (req, res) => {
-    const course = await Courses.findByPk(req.params.id);
     try {
+      const course = await Courses.findByPk(req.params.id);
       if (course) {
-        course.title = req.body.title;
-        course.description = req.body.description;
-        await Courses.update(course);
+        await course.update(req.body);
         res.status(204).end();
       } else {
-        res.status(404).json({ message: 'Course was not found' });
+        res.status(404).end();
       }
     } catch (error) {
-      res.status(500).json({ message: 'Server error' });
+      if (
+        error.name === 'SequelizeValidationError' ||
+        error.name === 'SequelizeUniqueConstraintError'
+      ) {
+        const errors = error.errors.map((err) => err.message);
+        res.status(400).json({ errors });
+      } else {
+        throw error;
+      }
     }
   })
 );
 
 // DELETES a course with corresponding ID.
 router.delete(
-  '/delete/:id',
+  '/:id',
   authenticateUser,
   asyncHandler(async (req, res) => {
     const course = await Courses.findByPk(req.params.id);
-    await Courses.destroy({ where: { id: req.params.id } });
-    res.status(204).end();
+    if (course) {
+      await Courses.destroy({ where: { id: req.params.id } });
+      res.status(204).end();
+    } else {
+      res.status(404).json({ message: 'Course was not found' });
+    }
   })
 );
 

@@ -112,7 +112,7 @@ export default class Data {
   // Delete course api route
   async deleteCourse(course, emailAddress, password) {
     const response = await this.api(
-      `/courses/delete/${course.id}`,
+      `/courses/${course.id}`,
       'DELETE',
       null,
       true,

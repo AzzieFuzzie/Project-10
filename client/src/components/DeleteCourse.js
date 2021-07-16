@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import Errors from './Errors';
 
 class DeleteCourse extends Component {
+  state = {
+    title: '',
+    description: '',
+    materialsNeeded: '',
+    estimatedTime: '',
+    errors: [],
+  };
+
   render() {
     return (
       <button className='button' onClick={this.submit}>
@@ -10,13 +18,43 @@ class DeleteCourse extends Component {
     );
   }
 
-  submit = () => {
+  // Retrieves single course
+  retrieveCourse = () => {
     const { context } = this.props;
-    const authUser = this.props.authenticatedUser;
     const id = this.props.match.params.id;
 
     context.data
-      .deleteCourse(id, authUser.emailAddress, authUser.password)
+      .getOneCourse(id)
+      .then((data) => {
+        this.setState({
+          title: data.title,
+          description: data.description,
+          materialsNeeded: data.materialsNeeded,
+          estimatedTime: data.estimatedTime,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push('/error');
+      });
+  };
+
+  submit = () => {
+    const { context } = this.props;
+    const authUser = this.props.authenticatedUser;
+
+    const { title, description, materialsNeeded, estimatedTime } = this.state;
+
+    // delete course
+    const deleteCourse = {
+      title,
+      description,
+      materialsNeeded,
+      estimatedTime,
+    };
+
+    context.data
+      .deleteCourse(deleteCourse, authUser.emailAddress, authUser.password)
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
