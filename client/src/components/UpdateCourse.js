@@ -85,8 +85,9 @@ class UpdateCourse extends Component {
     const {
       match: { params },
     } = this.props;
+    console.log(params);
     context.data
-      .getOneCourse(`courses/${params.id}`)
+      .getOneCourse(params.id)
       .then((data) => {
         this.setState({
           title: data.title,
