@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserHistory } from 'react-router-dom';
 import Form from './Form';
 import Errors from './Errors';
 
@@ -8,11 +9,13 @@ class UpdateCourse extends Component {
     description: '',
     materialsNeeded: '',
     estimatedTime: '',
+
     errors: [],
   };
 
   componentDidMount() {
     this.retrieveCourse();
+    this.submit();
   }
 
   render() {
@@ -80,9 +83,8 @@ class UpdateCourse extends Component {
   retrieveCourse = () => {
     const { context } = this.props;
     const id = this.props.match.params.id;
-
     context.data
-      .getOneCourse(id)
+      .getOneCourse(`course.${id}`)
       .then((data) => {
         this.setState({
           title: data.title,

@@ -69,17 +69,6 @@ class DeleteCourse extends Component {
       });
   };
 
-  change = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    this.setState(() => {
-      return {
-        [name]: value,
-      };
-    });
-  };
-
   handleSubmit(event) {
     event.preventDefault();
     this.submit();

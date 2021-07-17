@@ -10,6 +10,7 @@ import Authenticated from './components/Authenticated';
 import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';
+import DeleteCourse from './components/DeleteCourse';
 import './styles/global.css';
 // import './styles/reset.css';
 import withContext from './context';
@@ -19,6 +20,7 @@ const UserSignInWithContext = withContext(UserSignIn);
 const UserSignOutWithContext = withContext(UserSignOut);
 const CourseCreateWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
+const DeleteCourseWithContext = withContext(DeleteCourse);
 const AuthWithContext = withContext(Authenticated);
 const CourseDetailWithContext = withContext(CourseDetail);
 
@@ -33,6 +35,11 @@ class App extends Component {
             exact
             path='/courses/create'
             component={CourseCreateWithContext}
+          />
+          <PrivateRoute
+            exact
+            path='/courses/:id/delete'
+            component={DeleteCourseWithContext}
           />
           <PrivateRoute
             exact
