@@ -14,9 +14,6 @@ class UpdateCourse extends Component {
   };
 
   componentDidMount() {
-    const {
-      match: { params },
-    } = this.props;
     this.retrieveCourse();
     this.submit();
   }
@@ -85,7 +82,9 @@ class UpdateCourse extends Component {
   // Retrieves single course
   retrieveCourse = () => {
     const { context } = this.props;
-
+    const {
+      match: { params },
+    } = this.props;
     context.data
       .getOneCourse(`courses/${params.id}`)
       .then((data) => {
