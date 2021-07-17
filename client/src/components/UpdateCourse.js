@@ -14,8 +14,27 @@ class UpdateCourse extends Component {
   };
 
   componentDidMount() {
-    this.retrieveCourse();
-    this.submit();
+    // Retrieves single course
+
+    const { context } = this.props;
+    const {
+      match: { params },
+    } = this.props;
+    console.log(params);
+    context.data
+      .getOneCourse(params.id)
+      .then((data) => {
+        this.setState({
+          title: data.title,
+          description: data.description,
+          materialsNeeded: data.materialsNeeded,
+          estimatedTime: data.estimatedTime,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.props.history.push('/error');
+      });
   }
 
   render() {
@@ -78,29 +97,6 @@ class UpdateCourse extends Component {
       </div>
     );
   }
-
-  // Retrieves single course
-  retrieveCourse = () => {
-    const { context } = this.props;
-    const {
-      match: { params },
-    } = this.props;
-    console.log(params);
-    context.data
-      .getOneCourse(params.id)
-      .then((data) => {
-        this.setState({
-          title: data.title,
-          description: data.description,
-          materialsNeeded: data.materialsNeeded,
-          estimatedTime: data.estimatedTime,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.props.history.push('/error');
-      });
-  };
 
   change = (event) => {
     const name = event.target.name;
