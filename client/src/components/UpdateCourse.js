@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserHistory } from 'react-router-dom';
+import {} from 'react-router-dom';
 import Form from './Form';
 import Errors from './Errors';
 
