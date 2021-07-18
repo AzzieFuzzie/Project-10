@@ -20,7 +20,8 @@ class UpdateCourse extends Component {
     const {
       match: { params },
     } = this.props;
-    console.log(params);
+    console.log(params.id);
+
     context.data
       .getOneCourse(params.id)
       .then((data) => {
@@ -121,7 +122,6 @@ class UpdateCourse extends Component {
       description,
       materialsNeeded,
       estimatedTime,
-      id,
     };
 
     context.data

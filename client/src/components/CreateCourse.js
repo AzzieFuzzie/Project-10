@@ -88,6 +88,8 @@ class CreateCourse extends Component {
   submit = () => {
     const { context } = this.props;
     const { title, description, materialsNeeded, estimatedTime } = this.state;
+    const authUser = context.authenticatedUser;
+    console.log(authUser);
 
     // Create course
     const course = {
@@ -95,9 +97,9 @@ class CreateCourse extends Component {
       description,
       materialsNeeded,
       estimatedTime,
+      userId: authUser.id,
     };
-    const authUser = context.authenticatedUser;
-    console.log(authUser);
+
     context.data
       .createCourse(course, authUser.emailAddress, authUser.password)
       .then(console.log(course))
@@ -106,7 +108,8 @@ class CreateCourse extends Component {
           this.setState({ errors });
           return <Errors />;
         } else {
-          this.props.history.push('/courses/create');
+          this.props.history.push('/');
+          console.log('course successfully created');
         }
       })
       .catch((err) => {

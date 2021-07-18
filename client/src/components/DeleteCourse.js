@@ -25,13 +25,14 @@ class DeleteCourse extends Component {
 
     context.data
       .getOneCourse(id)
-      .then((data) => {
-        this.setState({
-          title: data.title,
-          description: data.description,
-          materialsNeeded: data.materialsNeeded,
-          estimatedTime: data.estimatedTime,
-        });
+      .then((errors) => {
+        if (errors.length) {
+          this.setState({ errors });
+          return <Errors />;
+        } else {
+          this.props.history.push('/');
+          console.log('course successfully deleted');
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -61,6 +62,7 @@ class DeleteCourse extends Component {
           return <Errors />;
         } else {
           this.props.history.push('/courses/delete/:id');
+          console.log('Course successfully deleted');
         }
       })
       .catch((err) => {
