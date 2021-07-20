@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Errors from './Errors';
+import Context from '../Context';
 
 class DeleteCourse extends Component {
   state = {
@@ -8,26 +9,18 @@ class DeleteCourse extends Component {
     materialsNeeded: '',
     estimatedTime: '',
     errors: [],
+    data: [],
   };
 
-  render() {
-    return (
-      <button className='button' onClick={this.submit}>
-        Delete course
-      </button>
-    );
-  }
+  componentDidMount() {
+    const { Context } = this.props;
 
-  // Retrieves single course
-  retrieveCourse = () => {
-    const { context } = this.props;
-    const id = this.props.match.params.id;
-
-    context.data
-      .getOneCourse(id)
+    Context.data
+      .getOneCourse(this.props.match.params.id)
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
+          console.log('error');
           return <Errors />;
         } else {
           this.props.history.push('/');
@@ -38,7 +31,15 @@ class DeleteCourse extends Component {
         console.log(err);
         this.props.history.push('/error');
       });
-  };
+  }
+
+  render() {
+    return (
+      <button className='button' onClick={this.submit}>
+        Delete course
+      </button>
+    );
+  }
 
   submit = () => {
     const { context } = this.props;

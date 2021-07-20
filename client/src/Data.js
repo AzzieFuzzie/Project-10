@@ -59,7 +59,7 @@ export default class Data {
     }
   }
 
-  // Retreieves single course api route
+  // Retrieves single course api route
   async getOneCourse(id) {
     const response = await this.api(`/courses/${id}`, 'GET');
     if (response.status === 200) {

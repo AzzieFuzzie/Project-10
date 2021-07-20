@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {} from 'react-router-dom';
+
 import Form from './Form';
 import Errors from './Errors';
 
@@ -9,7 +9,6 @@ class UpdateCourse extends Component {
     description: '',
     materialsNeeded: '',
     estimatedTime: '',
-
     errors: [],
   };
 
@@ -17,13 +16,9 @@ class UpdateCourse extends Component {
     // Retrieves single course
 
     const { context } = this.props;
-    const {
-      match: { params },
-    } = this.props;
-    console.log(params.id);
 
     context.data
-      .getOneCourse(params.id)
+      .getOneCourse(this.props.match.params.id)
       .then((data) => {
         this.setState({
           title: data.title,
@@ -31,6 +26,9 @@ class UpdateCourse extends Component {
           materialsNeeded: data.materialsNeeded,
           estimatedTime: data.estimatedTime,
         });
+      })
+      .then((data) => {
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -57,7 +55,7 @@ class UpdateCourse extends Component {
                 <div>
                   <label>Course Title</label>
                   <input
-                    id='1'
+                    id='title'
                     type='text'
                     value={title}
                     onChange={this.change}
@@ -66,7 +64,7 @@ class UpdateCourse extends Component {
                   <p>By {}</p>
                   <label>Course Description</label>
                   <textarea
-                    id='2'
+                    id='description'
                     type='text'
                     value={description}
                     onChange={this.change}
@@ -76,7 +74,7 @@ class UpdateCourse extends Component {
                 <div>
                   <label>Estimated Time</label>
                   <input
-                    id='3'
+                    id='estimatedTime'
                     type='text'
                     value={estimatedTime}
                     onChange={this.change}
@@ -84,7 +82,7 @@ class UpdateCourse extends Component {
                   />
                   <label>Materials Needed</label>
                   <textarea
-                    id='4'
+                    id='materialsNeeded'
                     type='text'
                     value={materialsNeeded}
                     onChange={this.change}
