@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import DeleteCourse from './DeleteCourse';
+// import DeleteCourse from './DeleteCourse';
 
 const CourseDetail = () => {
   const [courseDetails, setCourseDetails] = useState([]);
@@ -22,7 +22,7 @@ const CourseDetail = () => {
           Update Course
         </Link>
         {/* Delete button */}
-        <DeleteCourse />
+        {/* <DeleteCourse /> */}
         <Link className='button button-secondary' to='/'>
           Return to List
         </Link>
