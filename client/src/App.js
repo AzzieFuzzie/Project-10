@@ -13,7 +13,7 @@ import CreateCourse from './components/CreateCourse';
 import DeleteCourse from './components/DeleteCourse';
 import './styles/global.css';
 // import './styles/reset.css';
-import withContext from './context';
+import withContext from './Context';
 const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);

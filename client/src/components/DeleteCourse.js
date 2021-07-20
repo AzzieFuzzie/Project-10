@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Errors from './Errors';
-import Context from '../Context';
 
 class DeleteCourse extends Component {
   state = {
@@ -13,9 +12,9 @@ class DeleteCourse extends Component {
   };
 
   componentDidMount() {
-    const { Context } = this.props;
+    const { context } = this.props;
 
-    Context.data
+    context.data
       .getOneCourse(this.props.match.params.id)
       .then((errors) => {
         if (errors.length) {
