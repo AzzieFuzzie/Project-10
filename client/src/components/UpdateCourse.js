@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Form from './Form';
-
+import CourseErrors from './Errors';
 import { Context } from '../context';
 
 const UpdateCourse = () => {
@@ -52,6 +52,7 @@ const UpdateCourse = () => {
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
+          <CourseErrors />;
         } else {
           history.push('/');
           console.log('Course successfully updated');

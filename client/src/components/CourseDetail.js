@@ -48,13 +48,13 @@ const CourseDetail = () => {
         <Link className='button' to={`/courses/${courseDetails.id}/update`}>
           Update Course
         </Link>
-        {/* Delete button */}
-        {/* <DeleteCourse /> */}
+
         <form onSubmit={submit}>
           <button className='button' type='submit'>
             Delete Course
           </button>
         </form>
+
         <Link className='button button-secondary' to='/'>
           Return to List
         </Link>

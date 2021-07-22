@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Form from './Form';
+import CourseErrors from './Errors';
 
 class CreateCourse extends Component {
   state = {
@@ -106,6 +107,7 @@ class CreateCourse extends Component {
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
+          <CourseErrors />;
         } else {
           this.props.history.push('/');
           console.log('Course successfully created');

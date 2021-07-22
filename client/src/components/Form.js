@@ -19,16 +19,12 @@ export default (props) => {
     if (errors.length) {
       errorsDisplay = (
         <div>
-          <h2 className=''>Validation errors</h2>
+          <h3 className='validation--errors'>Validation errors</h3>
           <ul>
-            <li className='validation--errors'>
-              Please provide a value for "Title"
-            </li>
-            <li className='validation--errors'>
-              Please provide a value for "Description"
-            </li>
             {errors.map((error, i) => (
-              <li key={i}>{error}</li>
+              <li className='validation--errors' key={i}>
+                {error}
+              </li>
             ))}
           </ul>
         </div>
