@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = ({ Context }) => {
-  const authUser = Context.authenticatedUser;
+const Header = ({ context }) => {
+  const authUser = context.authenticatedUser;
   return (
     <header>
       <div className='wrap header--flex'>

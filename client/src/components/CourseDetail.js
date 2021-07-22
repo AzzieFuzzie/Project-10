@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-// import DeleteCourse from './DeleteCourse';
+import React, { useState, useContext, useEffect } from 'react';
+import { useParams, useHistory, Link } from 'react-router-dom';
+
+import Errors from './Errors';
+import { Context } from '../context';
 
 const CourseDetail = () => {
   const [courseDetails, setCourseDetails] = useState([]);
@@ -9,11 +11,38 @@ const CourseDetail = () => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((res) => res.json())
       .then((data) => setCourseDetails(data[0]))
+      .then((data) => console.log(courseDetails))
       .catch((error) =>
         console.log('Error fetching and parsing courseDetails', error)
       );
   }, []);
 
+  const context = useContext(Context);
+  const authUser = context.authenticatedUser;
+  const history = useHistory();
+  const [errors, setErrors] = useState([]);
+  const submit = (e) => {
+    e.preventDefault();
+    context.data
+      .deleteCourse(id, authUser.emailAddress, authUser.password)
+      .then((errors) => {
+        if (errors.length) {
+          this.setState({ errors });
+          return <Errors />;
+        } else {
+          history.push('/courses/delete/:id');
+          console.log('Course successfully deleted');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        history.push('/error');
+      });
+  };
+
+  const cancel = () => {
+    history.push('/');
+  };
   return (
     <div>
       {console.log(courseDetails)}
@@ -23,6 +52,11 @@ const CourseDetail = () => {
         </Link>
         {/* Delete button */}
         {/* <DeleteCourse /> */}
+        <form onSubmit={submit}>
+          <button className='button' type='submit'>
+            Delete
+          </button>
+        </form>
         <Link className='button button-secondary' to='/'>
           Return to List
         </Link>
@@ -44,7 +78,7 @@ const CourseDetail = () => {
           )}
           <h3 className='course--detail--title'>Materials Needed</h3>
           <ul>
-            {courseDetails.materialsNeeded ? (
+            {courseDetails.materialsNeeded || /(␣)/ ? (
               <li>{courseDetails.materialsNeeded}</li>
             ) : (
               <p>*No materials needed.</p>

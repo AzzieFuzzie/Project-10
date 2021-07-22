@@ -1,80 +1,56 @@
-// import React, { Component } from 'react';
+// import React, { useState, useContext, useEffect } from 'react';
+// import { useParams, useHistory } from 'react-router-dom';
+// import Form from './Form';
 // import Errors from './Errors';
+// import { Context } from '../context';
 
-// class DeleteCourse extends Component {
-//   state = {
-//     title: '',
-//     description: '',
-//     materialsNeeded: '',
-//     estimatedTime: '',
-//     errors: [],
-//     data: [],
-//   };
+// const DeleteCourse = () => {
+//   const [courseDelete, setCourseDelete] = useState([]);
+//   const { id } = useParams();
+//   useEffect(() => {
+//     fetch(`http://localhost:5000/api/courses/${id}`)
+//       .then((res) => res.json())
+//       .then((data) => setCourseDelete(data[0]))
+//       .catch((error) =>
+//         console.log('Error fetching and parsing courseUpdate', error)
+//       );
+//   }, []);
 
-//   componentDidMount() {
-//     const { context } = this.props;
-
+//   const context = useContext(Context);
+//   const authUser = context.authenticatedUser;
+//   const history = useHistory();
+//   const [errors, setErrors] = useState([]);
+//   const submit = () => {
 //     context.data
-//       .getOneCourse(this.props.match.params.id)
-//       .then((errors) => {
-//         if (errors.length) {
-//           this.setState({ errors });
-//           console.log('error');
-//           return <Errors />;
-//         } else {
-//           this.props.history.push('/');
-//           console.log('course successfully deleted');
-//         }
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//         this.props.history.push('/error');
-//       });
-//   }
-
-//   render() {
-//     return (
-//       <button className='button' onClick={this.submit}>
-//         Delete course
-//       </button>
-//     );
-//   }
-
-//   submit = () => {
-//     const { context } = this.props;
-//     const authUser = this.props.authenticatedUser;
-
-//     const { title, description, materialsNeeded, estimatedTime } = this.state;
-
-//     // delete course
-//     const deleteCourse = {
-//       title,
-//       description,
-//       materialsNeeded,
-//       estimatedTime,
-//     };
-
-//     context.data
-//       .deleteCourse(deleteCourse, authUser.emailAddress, authUser.password)
+//       .deleteCourse(id, authUser.emailAddress, authUser.password)
 //       .then((errors) => {
 //         if (errors.length) {
 //           this.setState({ errors });
 //           return <Errors />;
 //         } else {
-//           this.props.history.push('/courses/delete/:id');
+//           history.push('/courses/delete/:id');
 //           console.log('Course successfully deleted');
 //         }
 //       })
 //       .catch((err) => {
 //         console.log(err);
-//         this.props.history.push('/error');
+//         history.push('/error');
 //       });
 //   };
 
-//   handleSubmit(event) {
-//     event.preventDefault();
-//     this.submit();
-//   }
-// }
+//   const cancel = () => {
+//     history.push('/');
+//   };
+
+//   return (
+//     <Form
+//       cancel={cancel}
+//       submit={submit}
+//       errors={errors}
+//       submitButtonText='Delete course'
+//       elements={() => <React.Fragment></React.Fragment>}
+//     />
+//   );
+// };
 
 // export default DeleteCourse;
