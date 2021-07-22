@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from './Form';
-import Errors from './Errors';
 
 class CreateCourse extends Component {
   state = {
@@ -18,7 +17,7 @@ class CreateCourse extends Component {
     return (
       <div className='wrap'>
         <h1>Create Course</h1>
-        <Errors />;
+
         <Form
           cancel={this.cancel}
           errors={errors}
@@ -87,7 +86,8 @@ class CreateCourse extends Component {
 
   submit = () => {
     const { context } = this.props;
-    const { title, description, materialsNeeded, estimatedTime } = this.state;
+    const { title, description, materialsNeeded, estimatedTime, errors } =
+      this.state;
     const authUser = context.authenticatedUser;
     console.log(authUser);
 

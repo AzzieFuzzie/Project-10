@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Form from './Form';
-import Errors from './Errors';
+
 import { Context } from '../context';
 
 const UpdateCourse = () => {
@@ -29,13 +29,6 @@ const UpdateCourse = () => {
   const authUser = context.authenticatedUser;
   const history = useHistory();
 
-  // const setState = {
-  //   setTitle,
-  //   setDescription,
-  //   setEstimatedTime,
-  //   setMaterialsNeeded,
-  // };
-
   const change = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -59,7 +52,6 @@ const UpdateCourse = () => {
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
-          return <Errors />;
         } else {
           history.push('/');
           console.log('Course successfully updated');

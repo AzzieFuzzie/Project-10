@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 
-import Errors from './Errors';
 import { Context } from '../context';
 
 const CourseDetail = () => {
@@ -28,7 +27,6 @@ const CourseDetail = () => {
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
-          return <Errors />;
         } else {
           history.push('/');
           console.log('Course successfully deleted');
