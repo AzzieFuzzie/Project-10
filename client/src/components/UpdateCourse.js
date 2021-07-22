@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Form from './Form';
 import Errors from './Errors';
-import Context from '../context';
+import Context from '../Context';
 
 const UpdateCourse = () => {
   const [courseDetails, setCourseDetails] = useState([]);
@@ -23,7 +23,7 @@ const UpdateCourse = () => {
   const [errors, setErrors] = useState([]);
 
   const context = useContext(Context);
-  const authUser = context.authenticatedUser;
+  // const authUser = context.authenticatedUser;
   const history = useHistory();
 
   const change = (event) => {
@@ -50,7 +50,7 @@ const UpdateCourse = () => {
     };
 
     context.data
-      .updateCourse(updatedCourse, authUser.emailAddress, authUser.password)
+      .updateCourse(updatedCourse)
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
