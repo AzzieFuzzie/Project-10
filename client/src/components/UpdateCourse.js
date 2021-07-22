@@ -6,33 +6,43 @@ import { Context } from '../context';
 
 const UpdateCourse = () => {
   const [courseUpdate, setCourseUpdate] = useState([]);
-  const { id } = useParams();
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/courses/${id}`)
-      .then((res) => res.json())
-      .then((data) => setCourseUpdate(data[0]))
-      .catch((error) =>
-        console.log('Error fetching and parsing courseUpdate', error)
-      );
-  }, []);
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [estimatedTime, setEstimatedTime] = useState('');
   const [materialsNeeded, setMaterialsNeeded] = useState('');
   const [errors, setErrors] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/courses/${id}`)
+      .then((res) => res.json())
+      .then((data) => setTitle(data[0].title))
+      .then((data) => setDescription(data[0].description))
+      .then((data) => setEstimatedTime(data[0].estimatedTime))
+      .then((data) => setMaterialsNeeded(data[0].materialsNeeded))
+      .catch((error) =>
+        console.log('Error fetching and parsing courseUpdate', error)
+      );
+  }, []);
 
   const context = useContext(Context);
   const authUser = context.authenticatedUser;
   const history = useHistory();
 
-  const change = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  // const setState = {
+  //   setTitle,
+  //   setDescription,
+  //   setEstimatedTime,
+  //   setMaterialsNeeded,
+  // };
 
-    return {
-      [name]: value,
-    };
+  const change = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    if (name === 'title') setTitle(value);
+    else if (name === 'description') setDescription(value);
+    else if (name === 'estimatedTime') setEstimatedTime(value);
+    else if (name === 'materialsNeeded') setMaterialsNeeded(value);
   };
 
   const submit = () => {
@@ -51,7 +61,7 @@ const UpdateCourse = () => {
           setErrors(errors);
           return <Errors />;
         } else {
-          history.push('/courses/update');
+          history.push('/');
           console.log('Course successfully updated');
         }
       })

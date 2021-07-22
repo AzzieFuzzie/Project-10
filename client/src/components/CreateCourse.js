@@ -18,7 +18,7 @@ class CreateCourse extends Component {
     return (
       <div className='wrap'>
         <h1>Create Course</h1>
-
+        <Errors />;
         <Form
           cancel={this.cancel}
           errors={errors}
@@ -106,10 +106,9 @@ class CreateCourse extends Component {
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
-          return <Errors />;
         } else {
           this.props.history.push('/');
-          console.log('course successfully created');
+          console.log('Course successfully created');
         }
       })
       .catch((err) => {

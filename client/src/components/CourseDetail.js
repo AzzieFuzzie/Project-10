@@ -30,7 +30,7 @@ const CourseDetail = () => {
           this.setState({ errors });
           return <Errors />;
         } else {
-          history.push('/courses/delete/:id');
+          history.push('/');
           console.log('Course successfully deleted');
         }
       })
@@ -54,7 +54,7 @@ const CourseDetail = () => {
         {/* <DeleteCourse /> */}
         <form onSubmit={submit}>
           <button className='button' type='submit'>
-            Delete
+            Delete Course
           </button>
         </form>
         <Link className='button button-secondary' to='/'>
