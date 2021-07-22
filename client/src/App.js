@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <HeaderWithContext />
+        {/* <HeaderWithContext /> */}
         <Switch>
           <Route exact path='/' component={Courses} />
           <PrivateRoute
