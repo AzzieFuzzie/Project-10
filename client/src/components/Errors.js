@@ -1,10 +1,10 @@
 import React from 'react';
 
 function CourseErrors({ errors }) {
-  let errorsDisplay = null;
+  let errorsCourse = null;
 
   if (errors.length) {
-    errorsDisplay = (
+    errorsCourse = (
       <div>
         <h3 className='validation--errors'>Validation errors</h3>
         <ul>
@@ -23,7 +23,7 @@ function CourseErrors({ errors }) {
       </div>
     );
   }
-  return errorsDisplay;
+  return errorsCourse;
 }
 
 export default CourseErrors;
