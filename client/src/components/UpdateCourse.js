@@ -4,41 +4,46 @@ import Form from './Form';
 import { Context } from '../context';
 
 const UpdateCourse = () => {
-  const [courseUpdate, setCourseUpdate] = useState([]);
-
+  const [title, setTitle] = useState([]);
+  const [description, setDescription] = useState([]);
+  const [materialsNeeded, setMaterialsNeeded] = useState([]);
+  const [estimatedTime, setEstimatedTime] = useState([]);
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
+  const context = useContext(Context);
+  const authUser = context.authenticatedUser;
+  const history = useHistory();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((res) => res.json())
-      .then((res) => console.log(res))
-      .then((data) => setCourseUpdate(data[0]))
+      .then((data) => {
+        setTitle(data[0].title);
+        setEstimatedTime(data[0].description);
+        setDescription(data[0].estimatedTime);
+        setMaterialsNeeded(data[0].materialsNeeded);
+      })
       .catch((error) =>
         console.log('Error fetching and parsing courseUpdate', error)
       );
   }, []);
 
-  const context = useContext(Context);
-  const authUser = context.authenticatedUser;
-  const history = useHistory();
-
   const change = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    if (name === 'title') setCourseUpdate.title(value);
-    else if (name === 'description') setCourseUpdate.description(value);
-    else if (name === 'estimatedTime') setCourseUpdate.estimatedTime(value);
-    else if (name === 'materialsNeeded') setCourseUpdate.materialsNeeded(value);
+    if (name === 'title') setTitle(value);
+    else if (name === 'description') setDescription(value);
+    else if (name === 'estimatedTime') setEstimatedTime(value);
+    else if (name === 'materialsNeeded') setMaterialsNeeded(value);
   };
 
   const submit = () => {
     // Updated course
     const updatedCourse = {
-      title: setCourseUpdate.title,
-      description: setCourseUpdate.description,
-      materialsNeeded: setCourseUpdate.materialsNeeded,
-      estimatedTime: setCourseUpdate.estimatedTime,
+      title,
+      description,
+      materialsNeeded,
+      estimatedTime,
     };
 
     context.data
@@ -77,7 +82,7 @@ const UpdateCourse = () => {
                 <input
                   id='title'
                   type='text'
-                  value={courseUpdate.title}
+                  value={title}
                   onChange={change}
                   name='title'
                 />
@@ -86,7 +91,7 @@ const UpdateCourse = () => {
                 <textarea
                   id='description'
                   type='text'
-                  value={courseUpdate.description}
+                  value={description}
                   onChange={change}
                   name='description'
                 ></textarea>
@@ -96,7 +101,7 @@ const UpdateCourse = () => {
                 <input
                   id='estimatedTime'
                   type='text'
-                  value={courseUpdate.estimatedTime}
+                  value={estimatedTime}
                   onChange={change}
                   name='estimatedTime'
                 />
@@ -104,7 +109,7 @@ const UpdateCourse = () => {
                 <textarea
                   id='materialsNeeded'
                   type='text'
-                  value={courseUpdate.materialsNeeded}
+                  value={materialsNeeded}
                   onChange={change}
                   name='materialsNeeded'
                 ></textarea>
