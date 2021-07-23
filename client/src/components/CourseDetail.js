@@ -5,12 +5,15 @@ import { Context } from '../context';
 
 const CourseDetail = () => {
   const [courseDetails, setCourseDetails] = useState([]);
+  const [userDetails, setUserDetails] = useState([]);
   const { id } = useParams();
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((res) => res.json())
-      .then((data) => setCourseDetails(data[0]))
-      .then((data) => console.log(courseDetails))
+      .then((data) => {
+        setCourseDetails(data[0]);
+        setUserDetails(data[0].User);
+      })
       .catch((error) =>
         console.log('Error fetching and parsing courseDetails', error)
       );
@@ -20,6 +23,7 @@ const CourseDetail = () => {
   const authUser = context.authenticatedUser;
   const history = useHistory();
   const [errors, setErrors] = useState([]);
+
   const submit = (e) => {
     e.preventDefault();
     context.data
@@ -64,7 +68,9 @@ const CourseDetail = () => {
           <h2>Course Detail</h2>
           <h3 className='course--detail--title'>Course</h3>
           <h3 className='course--name'>{courseDetails.title}</h3>
-          <p>By{}</p>
+          <p>
+            By {userDetails.firstName} {userDetails.lastName}
+          </p>
           <p>{courseDetails.description}</p>
         </div>
         <div>

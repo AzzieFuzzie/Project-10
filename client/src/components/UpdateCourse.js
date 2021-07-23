@@ -8,6 +8,7 @@ const UpdateCourse = () => {
   const [description, setDescription] = useState([]);
   const [materialsNeeded, setMaterialsNeeded] = useState([]);
   const [estimatedTime, setEstimatedTime] = useState([]);
+  const [userUpdate, setUserUpdate] = useState([]);
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
   const context = useContext(Context);
@@ -22,6 +23,7 @@ const UpdateCourse = () => {
         setEstimatedTime(data[0].description);
         setDescription(data[0].estimatedTime);
         setMaterialsNeeded(data[0].materialsNeeded);
+        setUserUpdate(data[0].User);
       })
       .catch((error) =>
         console.log('Error fetching and parsing courseUpdate', error)
@@ -86,7 +88,9 @@ const UpdateCourse = () => {
                   onChange={change}
                   name='title'
                 />
-                <p>By {}</p>
+                <p>
+                  By {userUpdate.firstName} {userUpdate.lastName}
+                </p>
                 <label>Course Description</label>
                 <textarea
                   id='description'
