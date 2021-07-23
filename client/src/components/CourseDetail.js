@@ -49,21 +49,23 @@ const CourseDetail = () => {
     <div>
       {console.log(courseDetails)}
       <div className='actions--bar '>
-        <Link className='button' to={`/courses/${courseDetails.id}/update`}>
-          Update Course
-        </Link>
+        <div className='wrap'>
+          <Link className='button' to={`/courses/${courseDetails.id}/update`}>
+            Update Course
+          </Link>
 
-        <form onSubmit={submit}>
-          <button className='button' type='submit'>
-            Delete Course
-          </button>
-        </form>
+          <form onSubmit={submit}>
+            <button className='button' type='submit'>
+              Delete Course
+            </button>
+          </form>
 
-        <Link className='button button-secondary' to='/'>
-          Return to List
-        </Link>
+          <Link className='button button-secondary' to='/'>
+            Return to List
+          </Link>
+        </div>
       </div>
-      <div className=' main--flex wrap'>
+      <div className='main--flex wrap'>
         <div>
           <h2>Course Detail</h2>
           <h3 className='course--detail--title'>Course</h3>
@@ -75,7 +77,7 @@ const CourseDetail = () => {
         </div>
         <div>
           <h3 className='course--detail--title'>Estimated Time</h3>
-          {courseDetails.estimatedTime ? (
+          {courseDetails.estimatedTime || /(␣)/ ? (
             <p>{courseDetails.estimatedTime}</p>
           ) : (
             <p>N/A</p>

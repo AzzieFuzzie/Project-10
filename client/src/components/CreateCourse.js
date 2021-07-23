@@ -13,7 +13,8 @@ class CreateCourse extends Component {
   render() {
     const { title, description, materialsNeeded, estimatedTime, errors } =
       this.state;
-
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
     return (
       <div className='wrap'>
         <h1>Create Course</h1>
@@ -36,7 +37,9 @@ class CreateCourse extends Component {
                     onChange={this.change}
                   />
 
-                  <p>By{}</p>
+                  <p>
+                    By {authUser.firstName} {authUser.lastName}
+                  </p>
 
                   <label>Course Description</label>
                   <textarea
