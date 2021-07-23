@@ -106,7 +106,6 @@ class CreateCourse extends Component {
       .then((errors) => {
         if (errors.length) {
           this.setState({ errors });
-          <CourseErrors />;
         } else {
           this.props.history.push('/');
           console.log('Course successfully created');

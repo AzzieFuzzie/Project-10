@@ -18,8 +18,8 @@ export default (props) => {
 
     if (errors.length) {
       errorsDisplay = (
-        <div>
-          <h3 className='validation--errors'>Validation errors</h3>
+        <div className='validation--errors'>
+          <h3>Validation errors</h3>
           <ul>
             {errors.map((error, i) => (
               <li className='validation--errors' key={i}>

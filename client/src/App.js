@@ -6,7 +6,7 @@ import UserSignOut from './components/UserSignOut.js';
 import Header from './components/Header';
 import Courses from './components/Courses';
 import PrivateRoute from './PrivateRoute';
-import Authenticated from './components/Authenticated';
+
 import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
 import CreateCourse from './components/CreateCourse';
@@ -21,7 +21,7 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const CourseCreateWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 const DeleteCourseWithContext = withContext(DeleteCourse);
-const AuthWithContext = withContext(Authenticated);
+
 const CourseDetailWithContext = withContext(CourseDetail);
 
 class App extends Component {
@@ -54,11 +54,6 @@ class App extends Component {
           <Route exact path='/signin' component={UserSignInWithContext} />
           <Route exact path='/signup' component={UserSignUpWithContext} />
           <Route exact path='/signout' component={UserSignOutWithContext} />
-          <PrivateRoute
-            exact
-            path='/authenticated'
-            component={AuthWithContext}
-          />
         </Switch>
       </BrowserRouter>
     );

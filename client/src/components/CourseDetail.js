@@ -76,10 +76,10 @@ const CourseDetail = () => {
           )}
           <h3 className='course--detail--title'>Materials Needed</h3>
           <ul>
-            {courseDetails.materialsNeeded || /(␣)/ ? (
+            {courseDetails.materialsNeeded ? (
               <li>{courseDetails.materialsNeeded}</li>
             ) : (
-              <p>*No materials needed.</p>
+              <p>N/A</p>
             )}
           </ul>
         </div>

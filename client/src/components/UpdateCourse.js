@@ -1,25 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Form from './Form';
-import CourseErrors from './Errors';
 import { Context } from '../context';
 
 const UpdateCourse = () => {
   const [courseUpdate, setCourseUpdate] = useState([]);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [estimatedTime, setEstimatedTime] = useState('');
-  const [materialsNeeded, setMaterialsNeeded] = useState('');
+
   const [errors, setErrors] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/courses/${id}`)
       .then((res) => res.json())
-      .then((data) => setTitle(data[0].title))
-      .then((data) => setDescription(data[0].description))
-      .then((data) => setEstimatedTime(data[0].estimatedTime))
-      .then((data) => setMaterialsNeeded(data[0].materialsNeeded))
+      .then((res) => console.log(res))
+      .then((data) => setCourseUpdate(data[0]))
       .catch((error) =>
         console.log('Error fetching and parsing courseUpdate', error)
       );
@@ -32,19 +26,19 @@ const UpdateCourse = () => {
   const change = (event) => {
     const value = event.target.value;
     const name = event.target.name;
-    if (name === 'title') setTitle(value);
-    else if (name === 'description') setDescription(value);
-    else if (name === 'estimatedTime') setEstimatedTime(value);
-    else if (name === 'materialsNeeded') setMaterialsNeeded(value);
+    if (name === 'title') setCourseUpdate.title(value);
+    else if (name === 'description') setCourseUpdate.description(value);
+    else if (name === 'estimatedTime') setCourseUpdate.estimatedTime(value);
+    else if (name === 'materialsNeeded') setCourseUpdate.materialsNeeded(value);
   };
 
   const submit = () => {
     // Updated course
     const updatedCourse = {
-      title,
-      description,
-      materialsNeeded,
-      estimatedTime,
+      title: setCourseUpdate.title,
+      description: setCourseUpdate.description,
+      materialsNeeded: setCourseUpdate.materialsNeeded,
+      estimatedTime: setCourseUpdate.estimatedTime,
     };
 
     context.data
@@ -52,7 +46,6 @@ const UpdateCourse = () => {
       .then((errors) => {
         if (errors.length) {
           setErrors(errors);
-          <CourseErrors />;
         } else {
           history.push('/');
           console.log('Course successfully updated');
@@ -67,7 +60,6 @@ const UpdateCourse = () => {
   const cancel = () => {
     history.push('/');
   };
-
   return (
     <div className='wrap'>
       <h1>Update Course</h1>
