@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from './Form';
-import CourseErrors from './Errors';
 
 class CreateCourse extends Component {
   state = {

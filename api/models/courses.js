@@ -20,14 +20,21 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {
             msg: 'Please provide a valid "title"',
           },
+          notEmpty: {
+            msg: 'Please provide a "title"',
+          },
         },
       },
       description: {
         type: DataTypes.STRING,
+        notNull: true,
         allowNull: false,
         validate: {
           notNull: {
             msg: 'Please provide a valid "description"',
+          },
+          notEmpty: {
+            msg: 'Please provide a "description"',
           },
         },
       },
@@ -38,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {
             msg: 'Please provide a valid "estimated time"',
           },
+          notEmpty: {
+            msg: 'Please provide a "estimated time"',
+          },
         },
       },
       materialsNeeded: {
@@ -46,6 +56,9 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: {
             msg: 'Please provide a valid "materialNeeded"',
+          },
+          notEmpty: {
+            msg: 'Please provide a "materials needed"',
           },
         },
       },
