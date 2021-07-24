@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: { msg: 'A first Name is required' },
-        },
-        notEmpty: {
-          msg: 'Please provide a valid first name',
+          notEmpty: {
+            msg: 'Please provide a valid "First Name"',
+          },
         },
       },
       lastName: {
@@ -35,9 +35,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notNull: { msg: 'A last Name is required' },
-        },
-        notEmpty: {
-          msg: 'Please provide a valid last name',
+          notEmpty: {
+            msg: 'Please provide a valid "Last Name"',
+          },
         },
       },
       emailAddress: {
@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
             msg: 'A email is required',
           },
           isEmail: {
-            msg: 'Please provide a valid email',
+            msg: 'Please provide a valid "Email Address"',
           },
         },
       },
@@ -59,15 +59,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notNull: { msg: 'A password is required password' },
+          notNull: {
+            msg: 'A password is required',
+          },
+          notEmpty: {
+            msg: 'Please provide a password',
+          },
+          len: {
+            args: [6, 20],
+            msg: 'The password should be between 6 and 20 characters in length',
+          },
         },
-        notEmpty: {
-          msg: 'Please provide a valid password',
-        },
-        len: {
-          args: [6 - 15],
-          msg: 'The password should be between 6-15 charcters in length',
-        },
+
         set(val) {
           const hashedPassword = bcrypt.hashSync(val, 10);
           this.setDataValue('password', hashedPassword);

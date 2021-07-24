@@ -1,3 +1,5 @@
+// A function that allows users to sign up.
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
@@ -8,6 +10,7 @@ export default class UserSignUp extends Component {
     lastName: '',
     emailAddress: '',
     password: '',
+    confirmPassword: '',
     errors: [],
   };
 

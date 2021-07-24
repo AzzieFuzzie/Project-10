@@ -1,3 +1,5 @@
+// A function that updates courses.
+
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import Form from './Form';
@@ -20,8 +22,8 @@ const UpdateCourse = () => {
       .then((res) => res.json())
       .then((data) => {
         setTitle(data[0].title);
-        setEstimatedTime(data[0].description);
-        setDescription(data[0].estimatedTime);
+        setEstimatedTime(data[0].estimatedTime);
+        setDescription(data[0].description);
         setMaterialsNeeded(data[0].materialsNeeded);
         setUserUpdate(data[0].User);
       })

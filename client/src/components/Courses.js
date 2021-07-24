@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+// A function that retrieves and displays all courses on the home page.
 
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Courses = () => {

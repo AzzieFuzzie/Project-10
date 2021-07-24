@@ -1,3 +1,5 @@
+// A form that displays error and handles form functions through out the app.
+
 import React from 'react';
 
 export default (props) => {

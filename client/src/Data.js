@@ -1,3 +1,5 @@
+//  A function that is exported through out the app to allow for CRUD operations and authentication.
+
 import config from './config';
 
 export default class Data {
@@ -38,7 +40,7 @@ export default class Data {
     });
     if (response.status === 200) {
       return response.json().then((data) => data);
-    } else if (response.status === 404) {
+    } else if (response.status === 401) {
       return null;
     } else {
       throw new Error();

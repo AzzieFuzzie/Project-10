@@ -1,6 +1,7 @@
+// A function that fully displays one course and delete a courses.
+
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
-
 import { Context } from '../context';
 
 const CourseDetail = () => {
@@ -19,11 +20,13 @@ const CourseDetail = () => {
       );
   }, []);
 
+  const ReactMarkdown = require('react-markdown');
   const context = useContext(Context);
   const authUser = context.authenticatedUser;
   const history = useHistory();
   const [errors, setErrors] = useState([]);
 
+  // Deletes course with matching id.
   const submit = (e) => {
     e.preventDefault();
     context.data
@@ -42,29 +45,29 @@ const CourseDetail = () => {
       });
   };
 
-  const cancel = () => {
-    history.push('/');
-  };
   return (
-    <div>
+    <div onSubmit={submit}>
       {console.log(courseDetails)}
-      <div className='actions--bar '>
-        <div className='wrap'>
+      {authUser && authUser.id === courseDetails.userId ? (
+        <div className='actions--bar '>
           <Link className='button' to={`/courses/${courseDetails.id}/update`}>
             Update Course
           </Link>
-
-          <form onSubmit={submit}>
-            <button className='button' type='submit'>
-              Delete Course
-            </button>
-          </form>
-
+          <Link onClick={submit} className='button'>
+            Delete Course
+          </Link>
           <Link className='button button-secondary' to='/'>
             Return to List
           </Link>
         </div>
-      </div>
+      ) : (
+        <div className='actions--bar'>
+          <Link className='button button-secondary' to='/'>
+            Return to List
+          </Link>
+        </div>
+      )}
+
       <div className='main--flex wrap'>
         <div>
           <h2>Course Detail</h2>
@@ -73,23 +76,23 @@ const CourseDetail = () => {
           <p>
             By {userDetails.firstName} {userDetails.lastName}
           </p>
-          <p>{courseDetails.description}</p>
+          <ReactMarkdown>{courseDetails.description}</ReactMarkdown>
         </div>
         <div>
           <h3 className='course--detail--title'>Estimated Time</h3>
-          {courseDetails.estimatedTime || /(␣)/ ? (
+          {courseDetails.estimatedTime ? (
             <p>{courseDetails.estimatedTime}</p>
           ) : (
             <p>N/A</p>
           )}
           <h3 className='course--detail--title'>Materials Needed</h3>
-          <ul>
-            {courseDetails.materialsNeeded ? (
-              <li>{courseDetails.materialsNeeded}</li>
-            ) : (
-              <p>N/A</p>
-            )}
-          </ul>
+          {courseDetails.materialsNeeded ? (
+            <ReactMarkdown className='course--detail--list'>
+              {courseDetails.materialsNeeded}
+            </ReactMarkdown>
+          ) : (
+            <p>N/A</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+// A function that creates courses.
+
 import React, { Component } from 'react';
 import Form from './Form';
 
@@ -94,7 +96,7 @@ class CreateCourse extends Component {
     const authUser = context.authenticatedUser;
     console.log(authUser);
 
-    // Create course
+    // Created course
     const course = {
       title,
       description,
