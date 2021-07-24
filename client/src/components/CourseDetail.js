@@ -2,6 +2,7 @@
 
 import React, { useState, useContext, useEffect } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import { Context } from '../context';
 
 const CourseDetail = () => {
