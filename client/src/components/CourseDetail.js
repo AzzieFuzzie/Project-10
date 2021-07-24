@@ -21,7 +21,7 @@ const CourseDetail = () => {
       );
   }, []);
 
-  const ReactMarkdown = require('react-markdown');
+  // const ReactMarkdown = require('react-markdown');
   const context = useContext(Context);
   const authUser = context.authenticatedUser;
   const history = useHistory();
