@@ -30,7 +30,7 @@ const UpdateCourse = () => {
       .catch((error) =>
         console.log('Error fetching and parsing courseUpdate', error)
       );
-  }, []);
+  }, [id]);
 
   const change = (event) => {
     const value = event.target.value;
@@ -67,7 +67,7 @@ const UpdateCourse = () => {
   };
 
   const cancel = () => {
-    history.push('/');
+    history.push(`/courses/${id}`);
   };
   return (
     <div className='wrap'>

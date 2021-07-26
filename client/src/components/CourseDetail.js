@@ -19,13 +19,12 @@ const CourseDetail = () => {
       .catch((error) =>
         console.log('Error fetching and parsing courseDetails', error)
       );
-  }, []);
+  }, [id]);
 
   // const ReactMarkdown = require('react-markdown');
   const context = useContext(Context);
   const authUser = context.authenticatedUser;
   const history = useHistory();
-  const [errors, setErrors] = useState([]);
 
   // Deletes course with matching id.
   const submit = (e) => {
@@ -54,7 +53,7 @@ const CourseDetail = () => {
           <Link className='button' to={`/courses/${courseDetails.id}/update`}>
             Update Course
           </Link>
-          <Link onClick={submit} className='button'>
+          <Link onClick={submit} className='button' to='/'>
             Delete Course
           </Link>
           <Link className='button button-secondary' to='/'>

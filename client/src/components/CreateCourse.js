@@ -91,8 +91,7 @@ class CreateCourse extends Component {
 
   submit = () => {
     const { context } = this.props;
-    const { title, description, materialsNeeded, estimatedTime, errors } =
-      this.state;
+    const { title, description, materialsNeeded, estimatedTime } = this.state;
     const authUser = context.authenticatedUser;
     console.log(authUser);
 

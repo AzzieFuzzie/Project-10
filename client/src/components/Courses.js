@@ -15,11 +15,10 @@ const Courses = () => {
   return (
     <div className='main--grid wrap'>
       {courses.map((course) => (
-        <div className=' '>
+        <div key={course.id}>
           <Link
             className='course--link course--module'
             to={`/courses/${course.id}`}
-            key={course.id}
           >
             <h2 className='course--label'>Course</h2>
             <h3 className='course--title'>{course.title}</h3>
