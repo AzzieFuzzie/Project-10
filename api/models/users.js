@@ -2,7 +2,8 @@
 
 const bcrypt = require('bcryptjs');
 const { Model } = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
+
+(module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
      * Helper method for defining associations.
@@ -63,10 +64,10 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: {
             msg: 'Please provide a valid "Password"',
           },
-        },
-        set(val) {
-          const hashedPassword = bcrypt.hashSync(val, 10);
-          this.setDataValue('password', hashedPassword);
+          len: {
+            args: [6, 20],
+            msg: 'Password must be between 6-20 characters.',
+          },
         },
       },
     },
@@ -74,14 +75,24 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       modelName: 'Users',
     }
-  );
-  Users.associate = (models) => {
-    Users.hasMany(models.Courses, {
-      foreignKey: {
-        fieldName: 'userId',
-        allowNull: false,
-      },
+  ),
+    (Users.associate = (models) => {
+      Users.hasMany(models.Courses, {
+        foreignKey: {
+          fieldName: 'userId',
+          allowNull: false,
+        },
+      });
     });
-  };
   return Users;
-};
+}),
+  {
+    hooks: {
+      afterValidate: function (User) {
+        if (User.password) {
+          const hashedPassword = bcrypt.hashSync(val, 10);
+          this.setDataValue('password', hashedPassword);
+        }
+      },
+    },
+  };

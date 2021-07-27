@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default (props) => {
+const Form = (props) => {
   const { cancel, errors, submit, submitButtonText, elements } = props;
 
   function handleSubmit(event) {
@@ -52,3 +52,5 @@ export default (props) => {
     </div>
   );
 };
+
+export default Form;
