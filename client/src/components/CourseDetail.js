@@ -76,7 +76,7 @@ const CourseDetail = () => {
           <p>
             By {userDetails.firstName} {userDetails.lastName}
           </p>
-          <ReactMarkdown>{courseDetails.description}</ReactMarkdown>
+          <ReactMarkdown children={courseDetails.description} />
         </div>
         <div>
           <h3 className='course--detail--title'>Estimated Time</h3>
@@ -89,9 +89,7 @@ const CourseDetail = () => {
           {courseDetails.materialsNeeded ? (
             <ul>
               <li>
-                <ReactMarkdown className='course--detail--list'>
-                  {courseDetails.materialsNeeded}
-                </ReactMarkdown>
+                <ReactMarkdown children={courseDetails.materialsNeeded} />
               </li>
             </ul>
           ) : (
