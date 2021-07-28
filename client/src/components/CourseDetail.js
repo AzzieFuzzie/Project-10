@@ -44,7 +44,7 @@ const CourseDetail = () => {
         history.push('/error');
       });
   };
-  const input = ` *${courseDetails.materialsNeeded}`;
+
   return (
     <div onSubmit={submit}>
       {console.log(courseDetails)}
@@ -87,8 +87,8 @@ const CourseDetail = () => {
           )}
           <h3 className='course--detail--title'>Materials Needed</h3>
           {courseDetails.materialsNeeded ? (
-            <ul>
-              <ReactMarkdown source={input} />
+            <ul className='course--detail--list'>
+              <ReactMarkdown children={courseDetails.materials} />
             </ul>
           ) : (
             <p>N/A</p>
