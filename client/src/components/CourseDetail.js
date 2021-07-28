@@ -44,7 +44,7 @@ const CourseDetail = () => {
         history.push('/error');
       });
   };
-
+  const input = ` *${courseDetails.materialsNeeded}`;
   return (
     <div onSubmit={submit}>
       {console.log(courseDetails)}
@@ -89,7 +89,7 @@ const CourseDetail = () => {
           {courseDetails.materialsNeeded ? (
             <ul>
               <li>
-                <ReactMarkdown children={courseDetails.materialsNeeded} />
+                <ReactMarkdown source={input} />
               </li>
             </ul>
           ) : (
