@@ -3,7 +3,7 @@
 const bcrypt = require('bcryptjs');
 const { Model } = require('sequelize');
 
-(module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
      * Helper method for defining associations.
@@ -74,6 +74,15 @@ const { Model } = require('sequelize');
     {
       sequelize,
       modelName: 'Users',
+
+      hooks: {
+        afterValidate: function (user) {
+          if (user.password) {
+            const salt = bcrypt.genSaltSync(10, 'a');
+            user.password = bcrypt.hashSync(user.password, salt);
+          }
+        },
+      },
     }
   ),
     (Users.associate = (models) => {
@@ -85,14 +94,4 @@ const { Model } = require('sequelize');
       });
     });
   return Users;
-}),
-  {
-    hooks: {
-      afterValidate: function (User) {
-        if (User.password) {
-          const hashedPassword = bcrypt.hashSync(val, 10);
-          this.setDataValue('password', hashedPassword);
-        }
-      },
-    },
-  };
+};
