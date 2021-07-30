@@ -88,11 +88,9 @@ const CourseDetail = () => {
           <h3 className='course--detail--title'>Materials Needed</h3>
           {courseDetails.materialsNeeded ? (
             <ul className='course--detail--list'>
-              <li>
-                <ReactMarkdown
-                  children={courseDetails.materialsNeeded}
-                ></ReactMarkdown>
-              </li>
+              <ReactMarkdown
+                children={courseDetails.materialsNeeded}
+              ></ReactMarkdown>
             </ul>
           ) : (
             <p>N/A</p>
